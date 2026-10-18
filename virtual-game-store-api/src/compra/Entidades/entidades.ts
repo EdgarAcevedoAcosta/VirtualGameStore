@@ -1,9 +1,9 @@
-export interface Compra {
+xport interface Compra {
   idCompra: number;
   idUsuario: number;
   fecha: Date;
   total: number;
-  estado: string;
+  estado: estadoProductoCompra;
   productos: ProductoCompra[];
 }
 export interface ProductoCompra {
@@ -11,3 +11,6 @@ export interface ProductoCompra {
   cantidad: number;
   precioUnitario: number;
 }
+
+export type estadoProductoCompra =
+  'pendiente' | 'procesando' | 'enviando' | 'entregado' | 'cancelado';
