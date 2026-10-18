@@ -1,17 +1,12 @@
+import { Direccion } from '../../direccion/Entidades/entidades';
 export interface Usuario {
   idusuario: number;
   nombre: string;
   correo: string;
   contrasena: string;
-  rol: string;
-  direcciones: Direccion[];
-  activo: boolean;
+  rol: rolUsuario;
+  direcciones?: Direccion[];
+  activo: EstadoActivoUsuario;
 }
-
-export interface Direccion {
-  idDireccion: number;
-  calle: string;
-  ciudad: string;
-  codigoPostal: string;
-  pais: string;
-}
+export type EstadoActivoUsuario = 'activo' | 'inactivo';
+export type rolUsuario = 'admin' | 'cliente';
