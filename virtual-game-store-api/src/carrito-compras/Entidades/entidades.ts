@@ -1,12 +1,4 @@
-export interface Producto {
-  id: number;
-  nombre: string;
-  descripcion: string;
-  precio: number;
-  stock: number;
-  categoria: string;
-  imagenUrl: string;
-}
+import { Producto } from '../../producto/Entidades/entidades';
 export interface Carrito {
   id: number;
   productos: Producto[];
