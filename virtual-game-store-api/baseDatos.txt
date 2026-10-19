@@ -1,0 +1,116 @@
+En la carpeta de prisma dentro de virtuañ-game-store-api, en el archivo schema.prisma
+poner todo el texto de abajo y en la terminal poner 
+npx prisma migrate dev --name init 
+
+
+
+
+model Categoria{
+  idCategoria Int @id @default(autoincrement())
+  nombre String @db.VarChar(30)
+  categoriaProducto CategoriaProducto[]
+
+  @@map("Categoria")
+}
+
+model Producto{
+  idProducto Int @id @default(autoincrement())
+  nombre String @db.VarChar(50)
+  descripcion String @db.VarChar(160)
+  precio Float 
+  stock Int? 
+  imagenUrl String? @db.VarChar(200)
+  estado String @db.VarChar(7)
+  categoriaProducto CategoriaProducto[]
+  productoCompra ProductoCarrito[]
+
+  @@map("Producto")
+}
+
+model CategoriaProducto{
+  
+  idProducto Int
+  idCategoria Int
+
+  producto Producto @relation(fields: [idProducto], references:[idProducto], onDelete: Cascade)
+  categoria Categoria @relation(fields: [idCategoria], references:[idCategoria], onDelete: Cascade)
+
+  @@id([idProducto, idCategoria])
+  @@map("CategoriaProducto")
+}
+
+
+model Usuario{
+  idUsuario Int @id @default(autoincrement())
+  nombre String @db.VarChar(50)
+  correo String @db.VarChar(80)
+  contrasena String @db.VarChar(50)
+  rol String @db.VarChar(8)
+  activo String @db.VarChar(7)
+  carrito CarritoCompra[]
+  direcciones Direccion[]
+  compras Compra[]
+
+
+  @@map("Usuario")
+}
+model Direccion{
+  idDireccion Int @id @default(autoincrement())
+  calle String @db.VarChar(50)
+  ciudad String @db.VarChar(50)
+  codigoPostal String @db.VarChar(5)
+  pais String @db.VarChar(50)
+  idUsuario Int
+  compras Compra[]
+  
+
+  usuario Usuario @relation(fields: [idUsuario], references:[idUsuario], onDelete: Cascade)
+
+  @@index([idUsuario])
+  @@map("Direccion")
+}
+
+
+
+model Compra{
+  idCompra Int @id @default(autoincrement())
+  idUsuario Int
+  idDireccion Int
+  fecha DateTime @default(now())
+  total Float
+  estado String @db.VarChar(10)
+  idCarrito Int
+
+  usuario Usuario @relation(fields: [idUsuario], references:[idUsuario], onDelete: Cascade)
+  direccion Direccion @relation(fields: [idDireccion], references:[idDireccion], onDelete: Cascade)
+  carrito CarritoCompra @relation(fields: [idCarrito], references:[idCarrito], onDelete: Cascade)
+
+  @@index([idUsuario, idDireccion, idCarrito])
+  @@map("Compra")
+}
+
+model ProductoCarrito{
+  idProductoCarrito Int @id @default(autoincrement())
+  idCarrito Int?
+  idProducto Int?
+  cantidad Int
+
+  producto Producto? @relation(fields: [idProducto], references:[idProducto], onDelete: Cascade)
+  carrito CarritoCompra? @relation(fields: [idCarrito], references:[idCarrito], onDelete: Cascade)
+
+  @@index([idProducto, idCarrito])
+  @@map("ProductoCarrito")
+}
+
+model CarritoCompra{
+  idCarrito Int @id @default(autoincrement())
+  idUsuario Int?
+  productosCarrito ProductoCarrito[] 
+  total Float
+  compras Compra[]
+
+  usuario Usuario? @relation(fields: [idUsuario], references:[idUsuario], onDelete: Cascade)
+  
+  @@index([idUsuario])
+  @@map("CarritoCompra")
+}
