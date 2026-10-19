@@ -1,4 +1,4 @@
-export interface Categoria {
+export interface CrearCategoriaDto {
   id: number;
   nombre: string;
 }
