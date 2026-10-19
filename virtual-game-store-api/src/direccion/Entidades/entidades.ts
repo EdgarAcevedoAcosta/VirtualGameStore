@@ -4,4 +4,5 @@ export interface Direccion {
   ciudad: string;
   codigoPostal: string;
   pais: string;
+  idusuario: number;
 }
