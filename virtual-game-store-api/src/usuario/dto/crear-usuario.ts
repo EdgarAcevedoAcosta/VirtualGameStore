@@ -1,5 +1,6 @@
+import { EstadoActivoUsuario, rolUsuario } from '../Entidades/entidades';
 import { Direccion } from '../../direccion/Entidades/entidades';
-export interface Usuario {
+export interface CrearUsuarioDto {
   idusuario: number;
   nombre: string;
   correo: string;
@@ -8,5 +9,3 @@ export interface Usuario {
   direcciones?: Direccion[];
   activo: EstadoActivoUsuario;
 }
-export type EstadoActivoUsuario = 'activo' | 'inactivo';
-export type rolUsuario = 'admin' | 'cliente';
