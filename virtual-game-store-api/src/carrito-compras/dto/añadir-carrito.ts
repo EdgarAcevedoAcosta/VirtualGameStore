@@ -1,5 +1,8 @@
-export interface AnadirCarrito {
+import { Producto } from '../../producto/Entidades/entidades';
+
+export interface AnadirCarritoDto {
   idUsuario: number;
-  idProducto: number;
-  cantidad: number;
+  idCarrito: number;
+  productos?: Producto[];
+  total?: number;
 }
