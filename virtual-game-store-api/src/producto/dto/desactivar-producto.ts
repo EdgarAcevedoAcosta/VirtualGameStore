@@ -1,4 +1,4 @@
-export interface DesactivarProducto {
+export interface DesactivarProductoDto {
   id: number;
   activo: boolean;
 }

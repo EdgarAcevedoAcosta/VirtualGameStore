@@ -1,7 +1,7 @@
 import { EstadoProcucto } from '../Entidades/entidades';
 
 //import { Categoria } from "../dominio/entidades";
-export interface Producto {
+export interface CrearProductoDto {
   id: number;
   nombre: string;
   descripcion: string;
