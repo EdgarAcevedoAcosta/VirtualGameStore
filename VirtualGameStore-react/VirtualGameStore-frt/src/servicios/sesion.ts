@@ -10,9 +10,6 @@ export async function iniciarSesion(correo: string, contrasena: string): Promise
   const r = await api.post<Sobre<RespuestaToken>>("/auth/login", { correo, contrasena });
   return { token: r.data.data.access_token, usuario: r.data.data.usuario };
 }
-export async function cerrarSesion(): Promise<void> {
-  await api.post("/auth/logout");
-}
 export async function registrarUsuario(
   correo: string,
   contrasena: string,
