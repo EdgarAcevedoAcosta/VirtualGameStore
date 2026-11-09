@@ -13,3 +13,45 @@ export interface Sesion {
   usuario: Usuario;
 }
 // las demas si llevan id
+
+export interface Categoria {
+  idCategoria: number;
+  nombre: string;
+}
+export interface Producto {
+  idProducto: number;
+  nombre: string;
+  descripcion: string;
+  precio: number;
+  stock: number;
+}
+
+export interface CategoriaProducto {
+  idProducto: number;
+  idCategoria: number;
+}
+
+export interface Direccion {
+  idDireccion: number;
+  calle: string;
+  ciudad: string;
+  codigoPostal: string;
+  pais: string;
+  idUsuario: number;
+}
+
+export interface ProductoCarrito {
+  idProductoCarrito: number;
+  idProducto: number;
+  idCarrito: number;
+  cantidad: number;
+}
+export interface Compra {
+  idCompra: number;
+  idUsuario: number;
+  idDireccion: number;
+  fecha: Date;
+  total: number;
+  estado: "pendiente" | "enviado" | "entregado" | "cancelado";
+  idCarrito: number;
+}
