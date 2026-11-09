@@ -1,10 +1,10 @@
-import { Link } from "react-router";
+import { Link, NavLink } from "react-router";
 
 function claseEnlace({ isActivo }: { isActivo: boolean }) {
   return isActivo ? "barra__enlace barra__enlace--activo" : "barra__enlace";
 }
 export function Encabezado() {
-  //const {usuario, cerrarSesion} = useSesion();
+  const { usuario, cerrarSesion } = useSesion();
   return (
     <>
       <header className="barra">
@@ -34,7 +34,7 @@ export function Encabezado() {
             {usuario ? (
               <>
                 <span className="barra_usuario">Hola, {usuario.nombre}</span>
-                <button className="boton boton--secundario boton--chico" onClick={salir}>
+                <button className="boton boton--secundario boton--chico" onClick={cerrarSesion}>
                   Salir
                 </button>
               </>

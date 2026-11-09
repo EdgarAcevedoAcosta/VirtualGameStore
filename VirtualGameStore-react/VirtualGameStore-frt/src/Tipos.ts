@@ -8,4 +8,8 @@ export interface Usuario {
   rol: "admin" | "cliente";
 }
 
+export interface Sesion {
+  token: string;
+  usuario: Usuario;
+}
 // las demas si llevan id
