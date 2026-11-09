@@ -24,6 +24,7 @@ export interface Producto {
   descripcion: string;
   precio: number;
   stock: number;
+  imagenUrl: string;
 }
 
 export interface CategoriaProducto {

@@ -3,7 +3,7 @@ import type { Producto } from "../Tipos";
 import { traerVideojuegos } from "../servicios/Videojuegos";
 import { mensajeDeError } from "../servicios/api";
 
-export function useProductos(id: number) {
+export function useProductos() {
   const [productos, setProductos] = useState<Producto[]>([]);
   const [cargando, setCargando] = useState(true);
   const [error, setError] = useState<string | null>(null);
