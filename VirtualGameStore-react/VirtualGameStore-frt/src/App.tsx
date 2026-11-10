@@ -1,19 +1,18 @@
-import { useState } from "react";
-import heroImg from "./assets/hero.png";
-import reactLogo from "./assets/react.svg";
-import viteLogo from "./assets/vite.svg";
+import { lazy } from "react";
 import "./App.css";
 import { Navigate, Route, Routes } from "react-router";
 import { Layout } from "./componentes/Layout";
-import PaginaLogin from "./paginas/PaginaLogin";
-import PaginaRegistro from "./paginas/PaginaRegistro";
 import { NoEncontrado } from "./componentes/NoEncontrado";
-import PaginaMenu from "./paginas/PaginaMenu";
-import PaginaProducto from "./paginas/PaginaProducto";
+import { RutaProtegida } from "./componentes/RutaProtegida";
 
+const PaginaCategorias = lazy(() => import("./paginas/PaginaCategoria"));
+const PaginaRegistrarDireccion = lazy(() => import("./paginas/PaginaRegistrarDireccion"));
+const PaginaDirecciones = lazy(() => import("./paginas/PaginaDireccion"));
+const PaginaProducto = lazy(() => import("./paginas/PaginaProducto"));
+const PaginaMenu = lazy(() => import("./paginas/PaginaMenu"));
+const PaginaRegistro = lazy(() => import("./paginas/PaginaRegistro"));
+const PaginaLogin = lazy(() => import("./paginas/PaginaLogin"));
 function App() {
-  const [count, setCount] = useState(0);
-
   return (
     <>
       <Routes>
@@ -25,6 +24,11 @@ function App() {
           </Route>
           <Route path="entrar" element={<PaginaLogin />}></Route>
           <Route path="registro" element={<PaginaRegistro />}></Route>
+          <Route path="catalogo-categorias" element={<PaginaCategorias />}></Route>
+          <Route element={<RutaProtegida />}>
+            <Route path="mis-direcciones" element={<PaginaDirecciones />}></Route>
+            <Route path="registrar-direccion" element={<PaginaRegistrarDireccion />}></Route>
+          </Route>
         </Route>
         <Route path="*" element={<NoEncontrado />}></Route>
       </Routes>

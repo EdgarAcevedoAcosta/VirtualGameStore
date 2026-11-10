@@ -1,4 +1,4 @@
-import { Link, useNavigate } from "react-router";
+import { Link, useLocation, useNavigate } from "react-router";
 import { useSesion } from "../sesion/SesionContext";
 import { useState, type FormEvent } from "react";
 import { mensajeDeError } from "../servicios/api";
@@ -6,6 +6,7 @@ import { mensajeDeError } from "../servicios/api";
 export default function PaginaLogin() {
   const { entrar } = useSesion();
   const navegar = useNavigate();
+  const desde = (useLocation().state as { desde?: string } | null)?.desde ?? "/productos";
   const [correo, setCorreo] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState<string | null>(null);
@@ -17,7 +18,7 @@ export default function PaginaLogin() {
     setEnviando(true);
     try {
       await entrar(correo, password);
-      navegar("/productos");
+      navegar(desde);
     } catch (error) {
       setError(mensajeDeError(error, "No se pudo Iniciar Sesion"));
     } finally {

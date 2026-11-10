@@ -24,8 +24,30 @@ export function mensajeDeError(e: unknown, generico: string): string {
   return generico;
 }
 
+export function estadoDeError(e: unknown): number | undefined {
+  return axios.isAxiosError(e) ? e.response?.status : undefined;
+}
+
 api.interceptors.request.use((config) => {
   const token = localStorage.getItem("token");
   if (token) config.headers.Authorization = `Bearer ${token}`;
   return config;
 });
+
+api.interceptors.response.use(
+  (respuesta) => respuesta,
+  (error) => {
+    if (
+      axios.isAxiosError(error) &&
+      error.response?.status === 401 &&
+      localStorage.getItem("token")
+    ) {
+      localStorage.removeItem("token");
+      localStorage.removeItem("usuario");
+
+      window.dispatchEvent(new Event("sesion-terminada"));
+    }
+
+    return Promise.reject(error);
+  }
+);
