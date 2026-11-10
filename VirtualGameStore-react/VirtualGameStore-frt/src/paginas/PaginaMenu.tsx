@@ -9,8 +9,8 @@ export default function PaginaMenu() {
   return (
     <>
       <section className="pagina__encabezado">
-        <h1>Clases</h1>
-        <p className="pagina__bajada">Elige una clase para ver sus horarios e inscribirte.</p>
+        <h1>Videojuegos</h1>
+        <p className="pagina__bajada">Compra videojuegos.</p>
       </section>
       {cargando && <Cargando />}
       {error && <MensajeError mensaje={error} onReintentar={reintentar} />}
@@ -27,6 +27,7 @@ export default function PaginaMenu() {
             </Link>
           ))}
 
+          {/* 
           <a href="/clases/2" className="tarjeta-clase">
             <img
               className="tarjeta-clase__imagen"
@@ -39,6 +40,7 @@ export default function PaginaMenu() {
               <span className="tarjeta-clase__meta">45 min</span>
             </div>
           </a>
+          */}
         </div>
       )}
     </>
