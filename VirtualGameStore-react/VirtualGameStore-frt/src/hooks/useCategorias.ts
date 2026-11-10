@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import type { Categoria } from "../Tipos";
 import { mensajeDeError } from "../servicios/api";
-import { traerCategorias } from "../servicios/Categorias";
+import { traerCategorias } from "../servicios/Videojuegos";
 
 export function useCategorias() {
   const [categorias, setCategorias] = useState<Categoria[]>([]);

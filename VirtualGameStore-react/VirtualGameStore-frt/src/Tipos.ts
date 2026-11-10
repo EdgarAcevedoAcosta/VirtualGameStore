@@ -41,6 +41,13 @@ export interface Direccion {
   idUsuario: number;
 }
 
+export interface Carrito {
+  idCarrito: number;
+  idUsuario: number;
+  productoCarrito: ProductoCarrito[];
+  total: number;
+}
+
 export interface ProductoCarrito {
   idProductoCarrito: number;
   idProducto: number;
