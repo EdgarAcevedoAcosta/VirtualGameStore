@@ -1,14 +1,12 @@
-import { useState } from "react";
 import { useCategorias } from "../hooks/useCategorias";
-import { Link } from "react-router";
 import { Cargando } from "../componentes/Cargando";
 import { MensajeError } from "../componentes/MensajeError";
 
 export default function PaginaCategorias() {
-  const { categorias, cargando, error, reintentar } = useCategorias();
-  const [genero, setGenero] = useState([]);
-  const [distribuidor, setDistribuidor] = useState("");
-
+  const { cargando, error, reintentar } = useCategorias();
+  //const [genero, setGenero] = useState([]);
+  //const [distribuidor, setDistribuidor] = useState("");
+  /*
   const TodosGeneros = [
     "Acción",
     "Aventura",
@@ -17,8 +15,8 @@ export default function PaginaCategorias() {
     "Terror",
     "Fantasía",
     "Shooter",
-  ];
-  const DistribuidoresOpt = ["Nintendo", "RockStar", "Microsoft", "Sony"];
+  ];*/
+  //const DistribuidoresOpt = ["Nintendo", "RockStar", "Microsoft", "Sony"];
   return (
     <>
       <section className="pagina__encabezado">
@@ -30,7 +28,11 @@ export default function PaginaCategorias() {
       {!cargando && !error && (
         <div className="rejilla">
           <form>
-            <div className="targeta-categoria-filtro"></div>
+            <div className="targeta-categoria-filtro">
+              <div className="targeta-categoria-filtro filtros">
+                <div className=""></div>
+              </div>
+            </div>
           </form>
           {/* Aqui va estar la lista de videojuegos, sin categorias y con categorias 
           {productos.map((p) => (
@@ -44,21 +46,6 @@ export default function PaginaCategorias() {
             </Link>
           ))}
             */}
-
-          {/* 
-          <a href="/clases/2" className="tarjeta-clase">
-            <img
-              className="tarjeta-clase__imagen"
-              src="http://localhost:3000/img/clase-02.jpg"
-              alt="Ciclismo indoor"
-            />
-            <div className="tarjeta-clase__cuerpo">
-              <span className="etiqueta etiqueta--cardio">cardio</span>
-              <span className="tarjeta-clase__titulo">Ciclismo indoor</span>
-              <span className="tarjeta-clase__meta">45 min</span>
-            </div>
-          </a>
-          */}
         </div>
       )}
     </>

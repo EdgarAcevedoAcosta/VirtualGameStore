@@ -10,7 +10,7 @@ interface Aviso {
 export default function PaginaRegistrarDireccion() {
   const navegar = useNavigate();
   const { usuario } = useSesion();
-  const [aviso, setAviso] = useState<Aviso | null>(null);
+  const [_aviso, setAviso] = useState<Aviso | null>(null);
   const desde = (useLocation().state as { desde?: string } | null)?.desde ?? "/direcciones";
   const [calle, setCalle] = useState("");
   const [ciudad, setCiudad] = useState("");
@@ -19,7 +19,7 @@ export default function PaginaRegistrarDireccion() {
   const [error, setError] = useState<string | null>(null);
   const [enviando, setEnviando] = useState(false);
   /* */
-  async function registrarDireccion(idUsuario: number) {
+  async function registrarDireccion(_idUsuario: number) {
     if (!usuario) {
       setAviso({ tipo: "error", mensaje: "Necesitas Iniciar sesion para registrar una direccion" });
       return;
