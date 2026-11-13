@@ -1,15 +1,11 @@
-xport interface Compra {
-  idCompra: number;
+export interface Compra {
+  idCompra?: number;
   idUsuario: number;
+  idDireccion: number;
   fecha: Date;
   total: number;
-  estado: estadoProductoCompra;
-  productos: ProductoCompra[];
-}
-export interface ProductoCompra {
-  idProducto: number;
-  cantidad: number;
-  precioUnitario: number;
+  estado: string;
+  idCarrito: number;
 }
 
 export type estadoProductoCompra =

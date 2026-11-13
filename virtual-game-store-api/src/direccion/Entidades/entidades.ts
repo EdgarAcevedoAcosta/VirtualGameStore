@@ -1,8 +1,11 @@
+import { Compra } from 'src/compra/Entidades/entidades';
+
 export interface Direccion {
-  idDireccion: number;
+  idDireccion?: number;
   calle: string;
   ciudad: string;
   codigoPostal: string;
   pais: string;
-  idusuario: number;
+  idUsuario: number;
+  compras?: Compra[];
 }

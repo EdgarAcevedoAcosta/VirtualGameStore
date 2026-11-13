@@ -1,7 +1,15 @@
-import { Producto } from '../../producto/Entidades/entidades';
+import { Compra } from 'src/compra/Entidades/entidades';
+
 export interface Carrito {
-  idCarrito: number;
+  idCarrito?: number;
   idUsuario: number;
-  productos: Producto[];
+  productosCarrito?: ProductoCarrito[];
   total: number;
+  compras?: Compra[];
+}
+export interface ProductoCarrito {
+  idProductoCarrito?: number;
+  idCarrito: number;
+  idProducto: number;
+  cantidad: number;
 }

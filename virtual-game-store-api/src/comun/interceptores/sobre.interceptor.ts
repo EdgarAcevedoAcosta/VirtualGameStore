@@ -1,0 +1,41 @@
+import {
+  CallHandler,
+  ExecutionContext,
+  Injectable,
+  NestInterceptor,
+} from '@nestjs/common';
+import { map, Observable } from 'rxjs';
+
+export interface Sobre<T> {
+  data: T;
+  meta: {
+    ruta: string;
+    duracionMs: number;
+    timestamp: string;
+  };
+}
+
+@Injectable()
+export class SobreInterceptor implements NestInterceptor {
+  intercept(
+    contexto: ExecutionContext,
+    siguiente: CallHandler,
+  ): Observable<Sobre<unknown>> {
+    // ANTES: la ruta y la hora de inicio.
+    const req = contexto.switchToHttp().getRequest<{ url: string }>();
+    const inicio = Date.now();
+
+    return siguiente.handle().pipe(
+      // DESPUES: "data" es lo que regreso el controller. Lo metemos en el
+      // sobre. Los errores no pasan por aqui: van directo al filtro.
+      map((data) => ({
+        data,
+        meta: {
+          ruta: req.url,
+          duracionMs: Date.now() - inicio,
+          timestamp: new Date().toISOString(),
+        },
+      })),
+    );
+  }
+}

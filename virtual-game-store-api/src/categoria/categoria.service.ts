@@ -3,6 +3,7 @@ import { Categoria } from './Entidades/entidades';
 import { CATEGORIA_REPOSITORY } from './categoria.tokens';
 import type { CategoriaRepository } from './Entidades/categoria.repository';
 import { CrearCategoriaDto } from './dto/crear-Categoria';
+import { editarCategoriaDto } from './dto/editar-categoria';
 
 @Injectable()
 export class CategoriaService {
@@ -23,13 +24,12 @@ export class CategoriaService {
     return this.repo.crearCategoria(dto);
   }
 
-  /*
-  actualizarCategoria(
+  editarCategoria(
     id: number,
-    dto: ActualizarCategoriaDto,
+    dto: editarCategoriaDto,
   ): Promise<Categoria | null> {
-    return this.repo.actualizarCategoria(id, dto);
-  }*/
+    return this.repo.editarCategoria(id, dto);
+  }
 
   async eliminarCategoria(id: number): Promise<boolean> {
     await this.repo.eliminarCategoria(id);

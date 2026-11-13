@@ -1,7 +1,19 @@
-import { IsEmail, IsEnum, IsInt, IsOptional, MinLength } from 'class-validator';
-import { Rol } from '../dominio/usuario';
+import {
+  IsEmail,
+  IsNotEmpty,
+  IsString,
+  MaxLength,
+  MinLength,
+  IsOptional,
+  IsEnum,
+} from 'class-validator';
 
 export class RegistroDto {
+  @IsString()
+  @IsNotEmpty({ message: 'el nombre es obligatorio' })
+  @MaxLength(120)
+  nombre: string;
+
   @IsEmail({}, { message: 'el correo no tiene un formato valido' })
   correo: string;
 
@@ -10,12 +22,8 @@ export class RegistroDto {
   password: string;
 
   @IsOptional() // si no lo mandan, el Service pone "miembro"
-  @IsEnum(Rol, { message: 'rol debe ser miembro, entrenador o admin' })
-  rol?: Rol;
-
-  @IsOptional()
-  @IsInt()
-  miembroId?: number;
+  @IsString()
+  rol?: string;
 }
 
 export class LoginDto {
@@ -26,9 +34,15 @@ export class LoginDto {
   password: string;
 }
 
+export class UsuarioSesionDto {
+  correo: string;
+  nombre: string;
+  rol: string;
+}
 // Lo que regresa el login. Es de salida: no lleva validaciones.
 export class TokenDto {
   access_token: string; // el JWT
   token_type: string; // siempre "Bearer"
   expires_in: number; // segundos de vigencia
+  usuario: UsuarioSesionDto; // quien inicio sesion
 }

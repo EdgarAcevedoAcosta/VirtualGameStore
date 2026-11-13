@@ -1,0 +1,36 @@
+import {
+  CallHandler,
+  ExecutionContext,
+  Injectable,
+  Logger,
+  NestInterceptor,
+} from '@nestjs/common';
+import { Observable, tap } from 'rxjs';
+
+@Injectable()
+export class LoggingInterceptor implements NestInterceptor {
+  // Lo que escriba sale en la consola con la etiqueta [HTTP].
+  private readonly logger = new Logger('HTTP');
+
+  intercept(
+    contexto: ExecutionContext,
+    siguiente: CallHandler,
+  ): Observable<unknown> {
+    // ANTES del controller: tomamos la peticion y la hora de inicio.
+    const req = contexto
+      .switchToHttp()
+      .getRequest<{ method: string; url: string }>();
+    const inicio = Date.now();
+
+    // siguiente.handle() ejecuta el controller. Lo que va dentro del
+    // .pipe() corre DESPUES, cuando el controller ya respondio.
+    return siguiente.handle().pipe(
+      // tap solo corre si el controller respondio bien. Si lanzo un error
+      // (el 409), se salta directo al filtro y aqui no pasa nada.
+      tap(() => {
+        const ms = Date.now() - inicio; // cuanto tardo
+        this.logger.log(`${req.method} ${req.url} - ${ms}ms`); // GET /clases - 2ms
+      }),
+    );
+  }
+}

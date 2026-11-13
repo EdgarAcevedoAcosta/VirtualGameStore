@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, OnModuleInit } from '@nestjs/common';
 import { PrismaMariaDb } from '@prisma/adapter-mariadb';
 import { PrismaClient } from '../generated/prisma/client';
 
@@ -13,11 +13,15 @@ function configDelDriver(databaseUrl: string) {
     // Obligatorio con MySQL 8: sin esta bandera el driver responde
     // ER_CANNOT_RETRIEVE_RSA_KEY y no conecta nunca.
     allowPublicKeyRetrieval: true,
+    // Solo al desplegar (Aiven pide SSL). En local, DB_SSL no existe.
+    ...(process.env.DB_SSL === 'true'
+      ? { ssl: { rejectUnauthorized: false } }
+      : {}),
   };
 }
 
 @Injectable()
-export class PrismaService {
+export class PrismaService extends PrismaClient implements OnModuleInit {
   constructor() {
     const url = process.env.DATABASE_URL;
     if (!url) {

@@ -1,10 +1,11 @@
 import { Producto } from '../../producto/Entidades/entidades';
 
 export interface CrearCompraDto {
+  idCompra?: number;
   idUsuario: number;
-  idCompra: number;
-  productos: Producto[];
-  total?: number;
-  estado?: string;
+  idDireccion: number;
   fecha: Date;
+  total: number;
+  estado: string;
+  idCarrito: number;
 }

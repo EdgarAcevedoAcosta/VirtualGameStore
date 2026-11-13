@@ -1,4 +1,4 @@
 export interface DesactivarProductoDto {
-  id: number;
-  activo: boolean;
+  idProducto?: number;
+  estado: string;
 }

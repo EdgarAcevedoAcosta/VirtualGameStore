@@ -1,8 +1,9 @@
 import { Module } from '@nestjs/common';
 import { CompraController } from './compra.controller.js';
 import { CompraService } from './compra.service.js';
-import { CompraMemoriaRepository } from './infra/compra-memory.repository.js';
+
 import { COMPRA_REPOSITORY } from './compra.tokens.js';
+import { CompraPrismaRepository } from './infra/compra-prisma.repository.js';
 
 @Module({
   imports: [],
@@ -11,7 +12,7 @@ import { COMPRA_REPOSITORY } from './compra.tokens.js';
     CompraService,
     {
       provide: COMPRA_REPOSITORY,
-      useClass: CompraMemoriaRepository,
+      useClass: CompraPrismaRepository,
     },
   ],
   exports: [CompraService],

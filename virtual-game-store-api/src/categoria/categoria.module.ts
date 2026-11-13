@@ -2,7 +2,7 @@ import { Module } from '@nestjs/common';
 import { CategoriaController } from './categoria.controller.js';
 import { CategoriaService } from './categoria.service.js';
 import { CATEGORIA_REPOSITORY } from './categoria.tokens.js';
-import { CategoriaMemoriaRepository } from './infra/categoria-memory.repository.js';
+import { CategoriaPrismaRepository } from './infra/categoria-prisma.repository.js';
 
 @Module({
   imports: [],
@@ -11,7 +11,7 @@ import { CategoriaMemoriaRepository } from './infra/categoria-memory.repository.
     CategoriaService,
     {
       provide: CATEGORIA_REPOSITORY,
-      useClass: CategoriaMemoriaRepository,
+      useClass: CategoriaPrismaRepository,
     },
   ],
   exports: [CategoriaService],

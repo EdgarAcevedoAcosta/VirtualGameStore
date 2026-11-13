@@ -14,7 +14,7 @@ import { Publico } from '../auth/decoradores/publico-decorador';
 import type { CrearUsuarioDto } from './dto/crear-usuario';
 import type { ActualizarUsuarioDto } from './dto/actualizar-usuario';
 
-@Controller('usuario')
+@Controller('usuarios')
 export class UsuariosController {
   constructor(private readonly servicio: UsuarioService) {}
 

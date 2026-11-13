@@ -1,8 +1,10 @@
-import { Producto } from '../../producto/Entidades/entidades';
+import { Compra } from 'src/compra/Entidades/entidades';
+import { ProductoCarrito } from '../Entidades/entidades';
 
 export interface AnadirCarritoDto {
+  idCarrito?: number;
   idUsuario: number;
-  idCarrito: number;
-  productos?: Producto[];
-  total?: number;
+  productosCarrito: ProductoCarrito[];
+  total: number;
+  compras?: Compra[];
 }

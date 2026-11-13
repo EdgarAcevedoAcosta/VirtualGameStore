@@ -3,7 +3,7 @@ import { Direccion } from '../../direccion/Entidades/entidades';
 export interface ActualizarUsuarioDto {
   nombre?: string;
   correo?: string;
-  contrasena?: string;
+  passwordHash?: string;
   rol: rolUsuario;
   direcciones?: Direccion[];
   activo: EstadoActivoUsuario;
