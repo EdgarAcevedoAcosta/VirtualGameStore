@@ -48,47 +48,43 @@ async function main() {
   await prisma.producto.createMany({
     data: [
       {
-        nombre: 'Elden Ring',
-        descripcion:
-          'Explora las Tierras Intermedias en este galardonado RPG de mundo abierto.',
+        nombre: 'The Legend of Zelda: Breath of the Wild',
+        descripcion: 'Explora las Tierras  de mundo abierto.',
         precio: 69.99,
         stock: 50,
-        imagenUrl: 'https://images.igdb.com/elden-ring.jpg',
+        imagenUrl: '/img/zelda-breath-of-the-wild.jpg',
         estado: 'activo',
       },
       {
-        nombre: 'God of War Ragnarök',
-        descripcion:
-          'Kratos y Atreus regresan en una aventura épica inspirada en la mitología nórdica.',
+        nombre: 'Super Mario Odyssey',
+        descripcion: 'Explora las Tierras  de mundo abierto.',
         precio: 59.99,
         stock: 40,
-        imagenUrl: 'https://images.igdb.com/gow-ragnarok.jpg',
+        imagenUrl: '/img/super-mario-odyssey.jpg',
         estado: 'activo',
       },
       {
-        nombre: 'EA Sports FC 25',
-        descripcion:
-          'La experiencia definitiva de fútbol con licencias oficiales.',
+        nombre: 'Pokémon Legends: Arceus',
+        descripcion: 'Explora las Tierras  de mundo abierto.',
         precio: 49.99,
         stock: 80,
-        imagenUrl: 'https://images.igdb.com/fc25.jpg',
+        imagenUrl: 'pokemon-legends-arceus.jpg',
         estado: 'activo',
       },
       {
-        nombre: 'Call of Duty Black Ops 6',
-        descripcion: 'Acción frenética y multijugador competitivo.',
+        nombre: 'Animal Crossing: New Horizons',
+        descripcion: 'Explora las Tierras  de mundo abierto.',
         precio: 69.99,
         stock: 100,
-        imagenUrl: 'https://images.igdb.com/cod-bo6.jpg',
+        imagenUrl: '/img/animal-crossing-new-horizons.jpg',
         estado: 'activo',
       },
       {
-        nombre: 'The Legend of Zelda: Tears of the Kingdom',
-        descripcion:
-          'Explora Hyrule en una aventura llena de libertad y creatividad.',
+        nombre: 'Mario Kart 8 Deluxe',
+        descripcion: 'Acción frenética y multijugador competitivo.',
         precio: 69.99,
         stock: 45,
-        imagenUrl: 'https://images.igdb.com/totk.jpg',
+        imagenUrl: '/img/mario-kart-8-deluxe.jpg',
         estado: 'activo',
       },
     ],
