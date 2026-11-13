@@ -39,7 +39,12 @@ export class DireccionPrismaRepository implements DireccionRepository {
     }
     return this.prisma.direccion.update({
       where: { idDireccion },
-      data: { datos },
+      data: { 
+        calle: datos.calle,
+        ciudad: datos.ciudad,
+        codigoPostal: datos.codigoPostal,
+        idUsuario: datos.idUsuario,  
+      },
     });
   }
   async eliminarDireccion(idDireccion: number): Promise<boolean> {
