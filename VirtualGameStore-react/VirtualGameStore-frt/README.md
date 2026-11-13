@@ -5,6 +5,39 @@
 npm install
 npm run dev
 ```
+## Rutas
+
+| Método y ruta | Quién | Qué regresa |
+|---|---|---|
+| `GET /clases` | cualquiera | Las 8 clases, con `categoria`, `descripcion`, `duracionMin` e `imagen` |
+| `GET /clases/:id` | cualquiera | La clase **con sus horarios**, y en cada uno los lugares `disponibles` |
+| `GET /img/clase-01.jpg` | cualquiera | La imagen de la clase (archivo estático) |
+| `POST /auth/registro` | cualquiera | `{ nombre, correo, password }` → crea el miembro y su cuenta, y regresa el token |
+| `POST /auth/login` | cualquiera | `{ correo, password }` → `{ access_token, usuario: { correo, nombre, rol } }` |
+| `GET /auth/yo` | con token | Lo que viene dentro del token |
+| `GET /inscripciones/mias` | con token | Las inscripciones de quien viene en el token, con su clase y horario |
+| `POST /inscripciones` | con token | `{ horarioId }` → 201. El miembro sale del token |
+| `GET /inscripciones` | entrenador o admin | Todas |
+| `DELETE /inscripciones/:id` | entrenador o admin | Cancela |
+
+Toda respuesta exitosa viene en el sobre de la Práctica 9B: `{ data, meta }`.
+
+### Los errores que va a ver el frontend
+
+| Código | Cuándo | `message` |
+|---|---|---|
+| 400 | Registro con datos malos | Un arreglo, uno por regla: `["el nombre es obligatorio", …]` |
+| 401 | Login con contraseña equivocada | `Credenciales inválidas` |
+| 401 | Ruta protegida sin token, o con el token vencido | `Unauthorized` |
+| 403 | La cuenta no es de un miembro (entrenador o admin queriendo inscribirse) | `Tu cuenta no es de un miembro del gimnasio` |
+| 404 | `GET /clases/99` | `No existe la clase 99` |
+| 409 | Inscribirse dos veces al mismo horario | `Ya estás inscrito en este horario` |
+| 409 | El horario ya no tiene lugares (prueba el 3) | `Este horario ya está lleno (cupo de 1)` |
+| 409 | Registrarse con un correo que ya existe | `Ese correo ya está registrado` |
+
+`peticiones.http` tiene todas, listas para la extensión REST Client de VS Code.
+
+---
 
 
 # React + TypeScript + Vite
