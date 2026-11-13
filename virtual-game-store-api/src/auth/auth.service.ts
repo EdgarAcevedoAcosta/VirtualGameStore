@@ -1,8 +1,17 @@
-import { Inject, Injectable } from '@nestjs/common';
+import {
+  ConflictException,
+  Inject,
+  Injectable,
+  UnauthorizedException,
+} from '@nestjs/common';
 import {
   USUARIO_REPOSITORY,
   type UsuarioRepository,
 } from './dominio/usuario.reporitory';
+import { Usuario, PayloadJwt } from './dominio/usuario';
+import { LoginDto, RegistroDto, TokenDto } from './dto/auth.dto';
+import { JwtService } from '@nestjs/jwt'; // firma los tokens (lo da JwtModule)
+import * as bcrypt from 'bcryptjs';
 
 const VUELTAS = 10;
 
@@ -20,9 +29,10 @@ export class AuthService {
       throw new ConflictException('Ese correo ya esta registrado'); // 409
     }
     const usuario = await this.repo.guardar({
+      nombre: dto.nombre,
       correo: dto.correo,
       passwordHash: await bcrypt.hash(dto.password, VUELTAS), // el hash, ANTES de guardar
-      rol: dto.rol ?? Rol.cliente, // por omision, miembro
+      rol: dto.rol ?? 'cliente', // por omision, miembro
     });
     return this.firmar(usuario); // quien se registra ya queda con sesion
   }
@@ -42,7 +52,7 @@ export class AuthService {
   // Arma el payload y lo firma con JWT_SECRET.
   private async firmar(usuario: Usuario): Promise<TokenDto> {
     const payload: PayloadJwt = {
-      sub: usuario.id,
+      sub: usuario.idUsuario,
       correo: usuario.correo,
       rol: usuario.rol,
     };
@@ -50,6 +60,11 @@ export class AuthService {
       access_token: await this.jwt.signAsync(payload), // header.payload.firma
       token_type: 'Bearer',
       expires_in: 3600, // 1 hora, igual que en auth.module.ts
+      usuario: {
+        correo: usuario.correo,
+        nombre: usuario.nombre,
+        rol: usuario.rol,
+      },
     };
   }
 }

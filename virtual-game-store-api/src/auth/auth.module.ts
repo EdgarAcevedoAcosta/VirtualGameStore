@@ -5,7 +5,7 @@ import { AuthController } from './auth.controller';
 import { AuthService } from './auth.service';
 import { JwtStrategy } from './jwt.strategy';
 import { USUARIO_REPOSITORY } from './dominio/usuario.reporitory';
-import { UsuarioMemoriaRepository } from './infra/usuario-memoria.repository';
+
 import { UsuarioPrismaRepository } from './infra/usuario-prisma.reporitory';
 
 @Module({
