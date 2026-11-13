@@ -50,7 +50,7 @@ export default function PaginaRegistrarDireccion() {
           <span className="campo__etiqueta">Calle</span>
           <input
             className="campo__control"
-            type="email"
+            type="Textfied"
             value={calle}
             onChange={(e) => setCalle(e.target.value)}
           />
@@ -60,7 +60,7 @@ export default function PaginaRegistrarDireccion() {
           <span className="campo__etiqueta">Ciudad</span>
           <input
             className="campo__control"
-            type="password"
+            type="text"
             value={ciudad}
             onChange={(e) => setCiudad(e.target.value)}
           />
@@ -70,7 +70,7 @@ export default function PaginaRegistrarDireccion() {
           <span className="campo__etiqueta">Pais</span>
           <input
             className="campo__control"
-            type="password"
+            type="text"
             value={pais}
             onChange={(e) => setPais(e.target.value)}
           />
@@ -79,7 +79,7 @@ export default function PaginaRegistrarDireccion() {
           <span className="campo__etiqueta">Codigo Postal</span>
           <input
             className="campo__control"
-            type="password"
+            type="text"
             value={codigoPostal}
             onChange={(e) => setCodigoPostal(e.target.value)}
           />

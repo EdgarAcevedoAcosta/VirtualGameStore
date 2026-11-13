@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import type { Producto } from "../Tipos";
-import { traerVideojuegos } from "../servicios/productos/productos";
+import { traerVideojuegos } from "../servicios/productos/GETProductos";
 import { mensajeDeError } from "../servicios/api";
 
 export function useProductos() {

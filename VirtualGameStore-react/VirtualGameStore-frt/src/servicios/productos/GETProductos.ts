@@ -9,3 +9,4 @@ export async function traerVideojuego(id: number): Promise<Producto> {
   const respuesta = await api.get<Sobre<Producto>>(`/productos/${id}`);
   return respuesta.data.data;
 }
+ 
