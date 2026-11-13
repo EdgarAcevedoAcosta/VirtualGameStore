@@ -37,7 +37,10 @@ export class CarritoPrismaRepository implements CarritoRepository {
 
     return this.prisma.carritoCompra.update({
       where: { idCarrito },
-      data: { datos },
+      data: { 
+        total: datos.total,
+        idUsuario: datos.idUsuario,  
+      },
     });
   }
 }
