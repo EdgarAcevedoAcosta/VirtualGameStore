@@ -41,7 +41,14 @@ export class ProductoPrismaRepository implements ProductoRepository {
 
     return this.prisma.producto.update({
       where: { idProducto },
-      data: { datos },
+      data: { 
+        nombre: datos.nombre,
+        stock: datos.stock,
+        precio: datos.precio,
+        estado: datos.estado,
+        imagenUrl: datos.imagenUrl,
+        descripcion: datos.descripcion,  
+      },
     });
   }
   async eliminarProducto(idProducto: number): Promise<boolean> {
