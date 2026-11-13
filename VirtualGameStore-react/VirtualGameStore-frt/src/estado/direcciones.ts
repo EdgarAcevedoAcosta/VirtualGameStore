@@ -1,6 +1,6 @@
 import { create } from "zustand";
 import type { Direccion } from "../Tipos";
-import { traerMisDirecciones } from "../servicios/Videojuegos";
+import { traerMisDirecciones } from "../servicios/direcciones/GETDirecciones";
 import { mensajeDeError } from "../servicios/api";
 
 interface EstadoDireccion {

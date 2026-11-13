@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react";
-import type { Producto } from "../Tipos";
+import type { Carrito } from "../Tipos";
 import { mensajeDeError } from "../servicios/api";
-import { traerMiCarrito } from "../servicios/Videojuegos";
+import { traerMiCarrito } from "../servicios/carritos/GETCarritos";
 
 export function useMiCarrito() {
-  const [productos, setProductos] = useState<Producto[]>([]);
+  const [carrito, setCarrito] = useState<Carrito>();
   const [cargando, setCargando] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [intento, setIntento] = useState(0);
@@ -12,7 +12,7 @@ export function useMiCarrito() {
     let vigente = true;
     traerMiCarrito()
       .then((lista) => {
-        if (vigente) setProductos(lista);
+        if (vigente) setCarrito(lista);
       })
       .catch((e) => {
         if (vigente)
@@ -31,5 +31,5 @@ export function useMiCarrito() {
     setError(null);
     setIntento((n) => n + 1);
   }
-  return { productos, cargando, error, reintentar };
+  return { carrito, cargando, error, reintentar };
 }

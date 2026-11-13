@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import type { Direccion } from "../Tipos";
-import { traerDireccion } from "../servicios/Videojuegos";
+import { traerDireccion } from "../servicios/direcciones/GETDirecciones";
 import { mensajeDeError } from "../servicios/api";
 
 export function useDireccion(id: number) {

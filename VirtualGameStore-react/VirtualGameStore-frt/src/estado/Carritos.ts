@@ -1,17 +1,17 @@
 import { create } from "zustand";
-import type { Producto } from "../Tipos";
+import type { Carrito } from "../Tipos";
 import { mensajeDeError } from "../servicios/api";
-import { traerMiCarrito } from "../servicios/Videojuegos";
+import { traerMiCarrito } from "../servicios/carritos/GETCarritos";
 
 interface EstadoCarrito {
-  lista: Producto[];
+  lista: Carrito | null;
   cargando: boolean;
   error: string | null;
   cargar: () => Promise<void>;
   vaciar: () => void;
 }
 export const useVideojuegosC = create<EstadoCarrito>()((set) => ({
-  lista: [],
+  lista: null,
   cargando: true,
   error: null,
   cargar: async () => {
@@ -24,5 +24,5 @@ export const useVideojuegosC = create<EstadoCarrito>()((set) => ({
       set({ cargando: false });
     }
   },
-  vaciar: () => set({ lista: [], cargando: false, error: null }),
+  vaciar: () => set({ lista: null, cargando: false, error: null }),
 }));
