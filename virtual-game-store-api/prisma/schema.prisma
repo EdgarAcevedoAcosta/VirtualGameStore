@@ -17,9 +17,9 @@ datasource db {
 model Categoria{
   idCategoria Int @id @default(autoincrement())
   nombre String @db.VarChar(30)
-  categoriaProducto CategoriaProducto[]
+  productos Producto[]
 
-  @@map("Categoria")
+  @@map("categorias")
 }
 
 model Producto{
@@ -27,41 +27,28 @@ model Producto{
   nombre String @db.VarChar(50)
   descripcion String @db.VarChar(160)
   precio Float 
-  stock Int? 
-  imagenUrl String? @db.VarChar(200)
+  stock Int 
+  imagenUrl String @db.VarChar(200)
   estado String @db.VarChar(7)
-  categoriaProducto CategoriaProducto[]
+  categorias Categoria[]
   productoCompra ProductoCarrito[]
 
-  @@map("Producto")
+  @@map("productos")
 }
-
-model CategoriaProducto{
-  
-  idProducto Int
-  idCategoria Int
-
-  producto Producto @relation(fields: [idProducto], references:[idProducto], onDelete: Cascade)
-  categoria Categoria @relation(fields: [idCategoria], references:[idCategoria], onDelete: Cascade)
-
-  @@id([idProducto, idCategoria])
-  @@map("CategoriaProducto")
-}
-
 
 model Usuario{
   idUsuario Int @id @default(autoincrement())
   nombre String @db.VarChar(50)
-  correo String @db.VarChar(80)
-  contrasena String @db.VarChar(50)
-  rol String @db.VarChar(8)
+  correo String @unique @db.VarChar(160)
+  passwordHash String @db.VarChar(255)
+  creadoEn DateTime @default(now())
+  rol String @default("cliente") @db.VarChar(10)
   activo String @db.VarChar(7)
   carrito CarritoCompra[]
   direcciones Direccion[]
   compras Compra[]
 
-
-  @@map("Usuario")
+  @@map("usuarios")
 }
 model Direccion{
   idDireccion Int @id @default(autoincrement())
@@ -72,11 +59,10 @@ model Direccion{
   idUsuario Int
   compras Compra[]
   
-
   usuario Usuario @relation(fields: [idUsuario], references:[idUsuario], onDelete: Cascade)
 
   @@index([idUsuario])
-  @@map("Direccion")
+  @@map("direcciones")
 }
 
 
@@ -95,7 +81,7 @@ model Compra{
   carrito CarritoCompra @relation(fields: [idCarrito], references:[idCarrito], onDelete: Cascade)
 
   @@index([idUsuario, idDireccion, idCarrito])
-  @@map("Compra")
+  @@map("compras") 
 }
 
 model ProductoCarrito{
@@ -108,18 +94,18 @@ model ProductoCarrito{
   carrito CarritoCompra? @relation(fields: [idCarrito], references:[idCarrito], onDelete: Cascade)
 
   @@index([idProducto, idCarrito])
-  @@map("ProductoCarrito")
+  @@map("productoCarritos")
 }
 
 model CarritoCompra{
   idCarrito Int @id @default(autoincrement())
-  idUsuario Int?
+  idUsuario Int
   productosCarrito ProductoCarrito[] 
   total Float
   compras Compra[]
 
-  usuario Usuario? @relation(fields: [idUsuario], references:[idUsuario], onDelete: Cascade)
+  usuario Usuario @relation(fields: [idUsuario], references:[idUsuario], onDelete: Cascade)
   
   @@index([idUsuario])
-  @@map("CarritoCompra")
+  @@map("carritoCompras")
 }
