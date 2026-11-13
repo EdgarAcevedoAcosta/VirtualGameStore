@@ -31,19 +31,16 @@
 $ npm install
 ```
 
-## Compile and run the project
+## Cómo correrlo
 
 ```bash
-# development
-$ npm run start
-
-# watch mode
-$ npm run start:dev
-
-# production mode
-$ npm run start:prod
+npm install
+.env                    # y pon tu contraseña de root de MySQL
+npx prisma migrate dev --name inicial  
+npx prisma generate                     # genera el cliente en src/generado (Prisma 7 ya no lo hace solo)
+npx prisma db seed                      
+npm run start:dev
 ```
-
 ## Run tests
 
 ```bash
