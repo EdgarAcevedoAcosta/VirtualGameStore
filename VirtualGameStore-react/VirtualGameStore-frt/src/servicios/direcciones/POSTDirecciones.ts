@@ -1,8 +1,5 @@
-// realmente no se si los GET y el POST deben ir juntos por lo que temporalmente
-//Metodos POST
-
-import type { Direccion } from "../Tipos";
-import { api, type Sobre } from "./api";
+import type { Direccion } from "../../Tipos";
+import { api, type Sobre } from "../api";
 
 //Direccion
 export async function registrarDireccion(
