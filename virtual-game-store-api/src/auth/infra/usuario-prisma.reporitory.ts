@@ -31,7 +31,7 @@ export class UsuarioPrismaRepository implements UsuarioRepository {
     const fila = await this.prisma.$transaction(async (tx) => {
       // upsert: si el gimnasio ya tenia a esa persona como miembro (Sofia, en el
       // seed), se le liga la cuenta; si no, se crea con membresia basica.
-      const miembro = await tx.usuario.upsert({
+      const cliente = await tx.usuario.upsert({
         where: { correo },
         update: {},
         create: {

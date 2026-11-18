@@ -4,14 +4,13 @@ import {
   Injectable,
   UnauthorizedException,
 } from '@nestjs/common';
-import {
-  USUARIO_REPOSITORY,
-  type UsuarioRepository,
-} from './dominio/usuario.reporitory';
+
 import { Usuario, PayloadJwt } from './dominio/usuario';
 import { LoginDto, RegistroDto, TokenDto } from './dto/auth.dto';
 import { JwtService } from '@nestjs/jwt'; // firma los tokens (lo da JwtModule)
 import * as bcrypt from 'bcryptjs';
+import { USUARIO_REPOSITORY } from 'src/usuarios/usuarios.tokens';
+import type { UsuarioRepository } from './dominio/usuario.reporitory';
 
 const VUELTAS = 10;
 

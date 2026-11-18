@@ -6,6 +6,3 @@ export interface UsuarioRepository {
   guardar(nuevo: NuevoUsuario): Promise<Usuario>;
   registrarUsuario(nuevo: Omit<NuevoUsuario, 'rol'>): Promise<Usuario>;
 }
-
-// La interfaz se borra al compilar, por eso se inyecta con este texto.
-export const USUARIO_REPOSITORY = 'USUARIO_REPOSITORY';

@@ -12,7 +12,7 @@ import {
   ProductoDuplicadoError,
   ProductoNoEncontradoError,
   SinStockProductoError,
-} from '../../producto/Entidades/errores';
+} from '../../productos/Entidades/errores';
 
 // Atrapa ErrorDeDominio y TODAS sus hijas. Los demas errores (un 400 del
 // ValidationPipe, un NotFoundException) siguen su camino normal.

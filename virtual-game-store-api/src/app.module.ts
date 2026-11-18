@@ -1,26 +1,29 @@
 import { MiddlewareConsumer, Module, NestModule } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
-import { UsuarioModule } from './usuario/usuario.module';
+import { UsuarioModule } from './usuarios/usuario.module';
 import { AuthModule } from './auth/auth.module';
-import { ProductoModule } from './producto/producto.module';
-import { DireccionModule } from './direccion/direccion.module';
-import { CompraModule } from './compra/compra.module';
-import { CarritoComprasModule } from './carrito-compras/carrito-compras.module';
-import { CategoriaModule } from './categoria/categoria.module';
+import { ProductoModule } from './productos/producto.module';
+import { DireccionModule } from './direcciones/direccion.module';
+import { CompraModule } from './compras/compra.module';
+
+import { CategoriaModule } from './categorias/categoria.module';
 import { PeticionIdMiddleware } from './comun/middleware/peticion-id-middleware';
 import { PrismaModule } from './prisma/prisma.module';
+import { ProductoCarritoModule } from './productoCarritos/producto-carrito.module';
+import { CarritoComprasModule } from './carritoCompras/carrito-compras.module';
 
 @Module({
   imports: [
     PrismaModule,
-    UsuarioModule,
     AuthModule,
+    UsuarioModule,
     ProductoModule,
     DireccionModule,
     CompraModule,
     CarritoComprasModule,
     CategoriaModule,
+    ProductoCarritoModule,
   ],
   controllers: [AppController],
   providers: [AppService],
