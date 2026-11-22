@@ -1,3 +1,5 @@
+import { Categoria } from './categoria';
+
 export interface Producto {
   idProducto: number;
   nombre: string;
@@ -13,4 +15,8 @@ export type ProductoNuevo = Omit<Producto, 'idProducto'>;
 export interface Sobre<T> {
   data: T;
   meta: { ruta: string; duracionMs: number; timestamp: string };
+}
+
+export interface CategoriaProducto extends Producto {
+  categorias: Categoria[];
 }
