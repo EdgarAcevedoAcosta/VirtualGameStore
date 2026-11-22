@@ -8,3 +8,4 @@ export interface Compra {
   idCarrito: number;
 }
 export type CompraNueva = Omit<Compra, 'idCompra'>;
+export type EstadoCompra = 'pendiente' | 'procesando' | 'enviando' | 'entregado' | 'cancelado';

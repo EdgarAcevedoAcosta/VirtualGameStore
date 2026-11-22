@@ -7,3 +7,4 @@ export interface Direccion {
   idUsuario: number;
 }
 export type DireccionNueva = Omit<Direccion, 'idDireccion'>;
+export type Usuario = 'Un Usuario';
