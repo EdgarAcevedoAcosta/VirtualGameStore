@@ -7,3 +7,4 @@ export interface Compra {
   estado: string;
   idCarrito: number;
 }
+export type CompraNueva = Omit<Compra, 'idCompra'>;

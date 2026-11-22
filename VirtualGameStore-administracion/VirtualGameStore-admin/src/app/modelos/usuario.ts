@@ -6,3 +6,5 @@ export interface Usuario {
   rol: string;
   activo: string;
 }
+
+export type UsuarioNuevo = Omit<Usuario, 'idUsuario'>;

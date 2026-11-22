@@ -7,3 +7,10 @@ export interface Producto {
   imagenUrl: string;
   estado: string;
 }
+
+export type ProductoNuevo = Omit<Producto, 'idProducto'>;
+
+export interface Sobre<T> {
+  data: T;
+  meta: { ruta: string; duracionMs: number; timestamp: string };
+}

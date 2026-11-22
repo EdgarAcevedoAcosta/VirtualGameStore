@@ -6,3 +6,4 @@ export interface Direccion {
   pais: string;
   idUsuario: number;
 }
+export type DireccionNueva = Omit<Direccion, 'idDireccion'>;
