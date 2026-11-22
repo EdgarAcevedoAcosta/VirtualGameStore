@@ -8,3 +8,4 @@ export interface Usuario {
 }
 
 export type UsuarioNuevo = Omit<Usuario, 'idUsuario'>;
+export type Rol = 'admin' | 'usuario';
