@@ -5,7 +5,6 @@ import { CatalogoProductos } from '../../servicios/catalogo-productos';
 import { ProductosApi } from '../../servicios/productos-api';
 import { Router, RouterLink } from '@angular/router';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
-import { form } from '@angular/forms/signals';
 import { mensajeDeApi, mensajesDelCuerpo } from '../../servicios/errores';
 import { ESTADOPRODUCTO, IMAGENES } from '../../modelos/producto';
 import { HttpErrorResponse } from '@angular/common/http';

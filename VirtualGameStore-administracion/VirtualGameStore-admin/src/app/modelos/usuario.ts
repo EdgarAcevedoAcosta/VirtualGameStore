@@ -10,3 +10,5 @@ export interface Usuario {
 export type UsuarioNuevo = Omit<Usuario, 'idUsuario'>;
 export type Rol = 'admin' | 'usuario';
 export const ROLES: Rol[] = ['admin', 'usuario'];
+export type Activo = 'activo' | 'inactivo';
+export const ESTADOSUSUARIOS: Activo[] = ['activo', 'inactivo'];

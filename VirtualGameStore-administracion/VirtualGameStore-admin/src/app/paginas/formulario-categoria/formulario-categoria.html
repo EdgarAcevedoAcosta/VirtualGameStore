@@ -1,1 +1,26 @@
-<p>formulario-categoria works!</p>
+<a routerLink="/categorias" class="boton">Cancelar</a>
+@if (erroresServidor().length) {
+  <div class="aviso aviso--error">
+    @for (e of erroresServidor(); track e) {
+      <div>{{ e }}</div>
+    }
+  </div>
+}
+<form class="tarjeta formulario" [formGroup]="form" (ngSubmit)="guardar()" novalidate>
+  <div class="campo">
+    <label for="nombre">Nombre de la Categoria</label>
+    <input id="nombre" formControlName="nombre" />
+    @if (f.nombre.touched && f.nombre.hasError('required')) {
+      <span class="error">El Nombre es Obligatorio</span>
+    }
+    @if (f.nombre.hasError('maxlength')) {
+      <span class="error">El Nombre es de Maximo 80 Caracteres</span>
+    }
+  </div>
+
+  <div class="acciones">
+    <button class="boton" type="submit" [disabled]="guardando()">
+      {{ guardando() ? 'Guardando...' : 'Guardar' }}
+    </button>
+  </div>
+</form>

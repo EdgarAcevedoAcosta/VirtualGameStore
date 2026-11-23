@@ -9,6 +9,11 @@ import { map } from 'rxjs';
 export class ComprasApi {
   private readonly http = inject(HttpClient);
 
+  // esta nomas la agrege para el formulario pero teoricamente el admin no debe de hacer compras
+  crear(datos: CompraNueva) {
+    return this.http.post<Sobre<Compra>>(`${API_URL}/compras`, datos).pipe(map((r) => r.data));
+  }
+
   obtener(idCompra: number) {
     return this.http.get<Sobre<Compra>>(`${API_URL}/compras/${idCompra}`).pipe(map((r) => r.data));
   }

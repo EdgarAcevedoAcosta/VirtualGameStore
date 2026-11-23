@@ -22,6 +22,12 @@ export class CatalogoUsuarios {
     return e ? mensajeDeApi(e) : null;
   });
 
+  seleccionar(usuario: Usuario): void {
+    this.seleccionada.update((actual) =>
+      actual?.idUsuario === usuario.idUsuario ? null : usuario,
+    );
+  }
+
   readonly rol = signal<Rol | 'Todos'>('Todos');
   readonly seleccionada = signal<Usuario | null>(null);
 

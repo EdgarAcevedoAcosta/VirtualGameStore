@@ -1,1 +1,63 @@
-<p>formulario-direccion works!</p>
+<a routerLink="/direcciones" class="boton">Cancelar</a>
+@if (erroresServidor().length) {
+  <div class="aviso aviso--error">
+    @for (e of erroresServidor(); track e) {
+      <div>{{ e }}</div>
+    }
+  </div>
+}
+<form class="tarjeta formulario" [formGroup]="form" (ngSubmit)="guardar()" novalidate>
+  <div class="campo">
+    <label for="calle">Calle</label>
+    <input id="calle" formControlName="calle" />
+    @if (f.calle.touched && f.calle.hasError('required')) {
+      <span class="error">La Calle es Obligatoria</span>
+    }
+    @if (f.calle.hasError('maxlength')) {
+      <span class="error">La Calle es de Maximo 50 Caracteres</span>
+    }
+  </div>
+  <div class="campo">
+    <label for="ciudad">Ciudad</label>
+    <input id="ciudad" formControlName="ciudad" />
+    @if (f.ciudad.touched && f.ciudad.hasError('required')) {
+      <span class="error">La Ciudad es Obligatoria</span>
+    }
+    @if (f.ciudad.hasError('maxlength')) {
+      <span class="error">La Ciudad es de Maximo 50 Caracteres</span>
+    }
+  </div>
+  <div class="campo">
+    <label for="codigoPostal">Codigo Postal</label>
+    <input id="codigoPostal" formControlName="codigoPostal" />
+    @if (f.codigoPostal.touched && f.codigoPostal.hasError('required')) {
+      <span class="error">El Codigo Postal es Obligatorio</span>
+    }
+    @if (f.codigoPostal.hasError('maxlength')) {
+      <span class="error">El Codigo Postal es de Maximo 5 Caracteres</span>
+    }
+  </div>
+  <div class="campo">
+    <label for="pais">País</label>
+    <input id="pais" formControlName="pais" />
+    @if (f.pais.touched && f.pais.hasError('required')) {
+      <span class="error">El País es Obligatorio</span>
+    }
+    @if (f.pais.hasError('maxlength')) {
+      <span class="error">El País es de Maximo 50 Caracteres</span>
+    }
+  </div>
+  <div class="campo">
+    <label for="idUsuario">Usuario</label>
+    <input id="idUsuario" formControlName="idUsuario" type="number" />
+    @if (f.idUsuario.touched && f.idUsuario.hasError('required')) {
+      <span class="error">El Usuario es Obligatorio</span>
+    }
+  </div>
+
+  <div class="acciones">
+    <button class="boton" type="submit" [disabled]="guardando()">
+      {{ guardando() ? 'Guardando...' : 'Guardar' }}
+    </button>
+  </div>
+</form>
