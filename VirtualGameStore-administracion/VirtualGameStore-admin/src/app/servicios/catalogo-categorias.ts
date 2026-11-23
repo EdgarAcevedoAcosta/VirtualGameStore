@@ -1,5 +1,5 @@
 import { computed, inject, Service, signal } from '@angular/core';
-import { Categoria } from '../modelos/categoria';
+import { Cat, Categoria } from '../modelos/categoria';
 import { httpResource } from '@angular/common/http';
 import { Sobre } from '../modelos/producto';
 import { API_URL } from '../config';
@@ -21,21 +21,22 @@ export class CatalogoCategorias {
     const e = this.recurso.error();
     return e ? mensajeDeApi(e) : null;
   });
-
+  readonly nombre = signal<Cat | 'Todos'>('Todos');
   readonly seleccionada = signal<Categoria | null>(null);
 
   readonly visibles = computed(() => {
+    const cate = this.nombre();
     const todas = this.categoria();
-    return todas;
+    return cate === 'Todos' ? todas : todas.filter((u) => u.nombre === cate);
   });
-  /*
-  filtrar(rol: Rol | 'Todos'): void {
-    this.rol.set(rol);
+
+  filtrar(nombre: Cat | 'Todos'): void {
+    this.nombre.set(nombre);
     const elegida = this.seleccionada();
-    if (elegida && rol !== 'Todos' && elegida.rol !== rol) {
+    if (elegida && nombre !== 'Todos' && elegida.nombre !== nombre) {
       this.seleccionada.set(null);
     }
-  }*/
+  }
   private readonly busquedas = new BehaviorSubject<string>('');
 
   recargar(): void {
