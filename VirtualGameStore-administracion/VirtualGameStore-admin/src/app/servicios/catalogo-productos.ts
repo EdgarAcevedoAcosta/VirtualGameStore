@@ -1,6 +1,6 @@
 import { httpResource } from '@angular/common/http';
 import { computed, inject, Service, signal } from '@angular/core';
-import { Producto, Sobre } from '../modelos/producto';
+import { EstadoProducto, Producto, Sobre } from '../modelos/producto';
 import { API_URL } from '../config';
 import { ProductosApi } from './productos-api';
 import { mensajeDeApi } from './errores';
@@ -22,22 +22,21 @@ export class CatalogoProductos {
     return e ? mensajeDeApi(e) : null;
   });
 
-  readonly categoria = signal<Categoria | 'Todas'>('Todas');
+  readonly estado = signal<EstadoProducto | 'Todas'>('Todas');
   readonly seleccionada = signal<Producto | null>(null);
-  /*
-  readonly visibles=computed(()=>{
-    const cate=this.categoria();
-    const todas=this.productos();
-    return cate==='Todas'?todas:todas.filter((c)=>c.categorias===cate)
-  })*/
-  /*
-  filtrar(categoria: Categoria | 'Todas'): void {
-    this.categoria.set(categoria);
+
+  readonly visibles = computed(() => {
+    const cate = this.estado();
+    const todas = this.productos();
+    return cate === 'Todas' ? todas : todas.filter((c) => c.estado === cate);
+  });
+  filtrar(estado: EstadoProducto | 'Todas'): void {
+    this.estado.set(estado);
     const elegida = this.seleccionada();
-    if (elegida && categoria !== 'Todas' && elegida.categoria !== categoria) {
+    if (elegida && estado !== 'Todas' && elegida.estado !== estado) {
       this.seleccionada.set(null);
     }
-  }*/
+  }
   private readonly busquedas = new BehaviorSubject<string>('');
 
   recargar(): void {

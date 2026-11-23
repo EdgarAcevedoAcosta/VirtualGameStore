@@ -17,6 +17,9 @@ export interface Sobre<T> {
   meta: { ruta: string; duracionMs: number; timestamp: string };
 }
 
+export type EstadoProducto = 'activo' | 'inactivo';
+export const ESTADOPRODUCTO: EstadoProducto[] = ['activo', 'inactivo'];
+
 export interface CategoriaProducto extends Producto {
   categorias: Categoria[];
 }

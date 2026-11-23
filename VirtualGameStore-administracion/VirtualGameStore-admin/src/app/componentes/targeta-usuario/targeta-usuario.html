@@ -1,1 +1,32 @@
-<p>targeta-usuario works!</p>
+<article
+  class="tarjeta-usuario"
+  [class.tarjeta-clase--activa]="activa()"
+  (click)="seleccionar.emit(usuario())"
+>
+  <div class="tarjeta-usuario__cuerpo">
+    <h3 class="tarjeta-usuario__nombre">{{ usuario().nombre }}</h3>
+    <p class="tarjeta-usuario__correo">{{ usuario().correo }}</p>
+  </div>
+  <p class="clase__activo">
+    @switch (usuario().activo) {
+      @case ('activo') {
+        Usuario Activo
+      }
+      @case ('inactivo') {
+        Usuario Inactivo
+      }
+    }
+  </p>
+  <div class="terjeta-clase__pie">
+    <span [class]="'etiquetaetiqueta--' + usuario().creadoEn">{{ usuario().creadoEn }}</span>
+  </div>
+  <div class="acciones">
+    <a [routerLink]="['/usuarios', usuario().idUsuario, 'editar']" class="boton-editar"
+      >Editar Usuario</a
+    >
+    <!--
+    <button class="boton-eliminar" (click)="eliminar(usuario().idUsuario)">
+      <img src="/public/delete.png" alt="Eliminar" class="icon-delete" />
+    </button>-->
+  </div>
+</article>

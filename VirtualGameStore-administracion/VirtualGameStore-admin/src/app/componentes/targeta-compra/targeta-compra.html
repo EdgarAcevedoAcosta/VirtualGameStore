@@ -1,1 +1,20 @@
-<p>targeta-compra works!</p>
+<article
+  class="tarjeta-clase"
+  [class.tarjeta-clase--activa]="activa()"
+  (click)="seleccionar.emit(compra())"
+>
+  <div class="tarjeta-compra__cuerpo">
+    <h3 class="tarjeta-compra__usuario">{{ compra().idUsuario }}</h3>
+    <h4 class="tarjeta-compra__fecha">{{ compra().fecha }}</h4>
+    <p class="tarjeta-compra__total">{{ compra().total }}</p>
+    <p class="tarjeta-compra__estado">{{ compra().estado }}</p>
+  </div>
+
+  <div class="acciones">
+    <a [routerLink]="['/compras', compra().idCompra]" class="boton-editar">Editar Compra</a>
+    <!--
+    <button class="boton-eliminar" (click)="eliminar(compra().idCompra)">
+      <img src="/public/delete.png" alt="Eliminar" class="icon-delete" />
+    </button>-->
+  </div>
+</article>
