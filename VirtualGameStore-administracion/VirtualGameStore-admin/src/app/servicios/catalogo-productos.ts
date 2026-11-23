@@ -21,6 +21,11 @@ export class CatalogoProductos {
     const e = this.recurso.error();
     return e ? mensajeDeApi(e) : null;
   });
+  seleccionar(producto: Producto): void {
+    this.seleccionada.update((actual) =>
+      actual?.idProducto === producto.idProducto ? null : producto,
+    );
+  }
 
   readonly estado = signal<EstadoProducto | 'Todas'>('Todas');
   readonly seleccionada = signal<Producto | null>(null);
