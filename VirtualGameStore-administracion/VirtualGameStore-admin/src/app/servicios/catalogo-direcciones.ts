@@ -24,6 +24,11 @@ export class CatalogoDirecciones {
 
   readonly usuario = signal<Usuario | 'Todos'>('Todos');
   readonly seleccionada = signal<Direccion | null>(null);
+  seleccionar(direccion: Direccion): void {
+    this.seleccionada.update((actual) =>
+      actual?.idDireccion === direccion.idDireccion ? null : direccion,
+    );
+  }
 
   readonly visibles = computed(() => {
     //const cate = this.usuario();

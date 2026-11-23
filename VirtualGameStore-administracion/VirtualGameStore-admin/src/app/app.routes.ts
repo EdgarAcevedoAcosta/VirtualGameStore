@@ -21,7 +21,7 @@ export const routes: Routes = [
       { path: 'compras', component: ListaCompras, title: 'Compras - Admin' },
       { path: 'usuarios', component: ListaUsuarios, title: 'Usuarios - Admin' },
       {
-        path: 'produsctos/nuevo',
+        path: 'productos/nuevo',
         loadComponent: () =>
           import('./paginas/formulario-producto/formulario-producto').then(
             (m) => m.FormularioProducto,
@@ -34,7 +34,67 @@ export const routes: Routes = [
           import('./paginas/formulario-producto/formulario-producto').then(
             (m) => m.FormularioProducto,
           ),
-        title: 'Editar Clase - Admin',
+        title: 'Editar Producto - Admin',
+      },
+      {
+        path: 'categorias/nuevo',
+        loadComponent: () =>
+          import('./paginas/formulario-categoria/formulario-categoria').then(
+            (m) => m.FormularioCategoria,
+          ),
+        title: 'Nuevo Categoria - Admin',
+      },
+      {
+        path: 'categorias/:id/editar',
+        loadComponent: () =>
+          import('./paginas/formulario-categoria/formulario-categoria').then(
+            (m) => m.FormularioCategoria,
+          ),
+        title: 'Editar Categoria - Admin',
+      },
+      {
+        path: 'usuarios/nuevo',
+        loadComponent: () =>
+          import('./paginas/formulario-usuario/formulario-usuario').then(
+            (m) => m.FormularioUsuario,
+          ),
+        title: 'Nuevo Usuario - Admin',
+      },
+      {
+        path: 'usuarios/:id/editar',
+        loadComponent: () =>
+          import('./paginas/formulario-usuario/formulario-usuario').then(
+            (m) => m.FormularioUsuario,
+          ),
+        title: 'Editar Usuario - Admin',
+      },
+      {
+        path: 'direcciones/nuevo',
+        loadComponent: () =>
+          import('./paginas/formulario-direccion/formulario-direccion').then(
+            (m) => m.FormularioDireccion,
+          ),
+        title: 'Nueva Direccion - Admin',
+      },
+      {
+        path: 'direcciones/:id/editar',
+        loadComponent: () =>
+          import('./paginas/formulario-direccion/formulario-direccion').then(
+            (m) => m.FormularioDireccion,
+          ),
+        title: 'Editar Direccion - Admin',
+      },
+      {
+        path: 'compras/nuevo',
+        loadComponent: () =>
+          import('./paginas/formulario-compra/formulario-compra').then((m) => m.FormularioCompra),
+        title: 'Nuevo Compra - Admin',
+      },
+      {
+        path: 'productos/:id/editar',
+        loadComponent: () =>
+          import('./paginas/formulario-compra/formulario-compra').then((m) => m.FormularioCompra),
+        title: 'Editar Compra - Admin',
       },
       { path: '', redirectTo: 'productos', pathMatch: 'full' },
     ],

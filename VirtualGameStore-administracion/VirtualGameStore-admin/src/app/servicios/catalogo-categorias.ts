@@ -30,6 +30,12 @@ export class CatalogoCategorias {
     return cate === 'Todos' ? todas : todas.filter((u) => u.nombre === cate);
   });
 
+  seleccionar(categoria: Categoria): void {
+    this.seleccionada.update((actual) =>
+      actual?.idCategoria === categoria.idCategoria ? null : categoria,
+    );
+  }
+
   filtrar(nombre: Cat | 'Todos'): void {
     this.nombre.set(nombre);
     const elegida = this.seleccionada();

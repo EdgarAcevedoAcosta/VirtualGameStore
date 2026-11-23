@@ -32,6 +32,10 @@ export class CatalogoCompras {
     return cate === 'Todos' ? todas : todas.filter((u) => u.estado === cate);
   });
 
+  seleccionar(compra: Compra): void {
+    this.seleccionada.update((actual) => (actual?.idCompra === compra.idCompra ? null : compra));
+  }
+
   filtrar(estado: EstadoCompra | 'Todos'): void {
     this.estado.set(estado);
     const elegida = this.seleccionada();
