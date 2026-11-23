@@ -1,1 +1,54 @@
-<p>lista-categorias works!</p>
+<div class="encabezado">
+  <h1>Catalogo de Categorias</h1>
+  <p>Estos datos son del Archivo local</p>
+  <a routerLink="/productos/nuevo" class="boton">+ Nueva Categoria</a>
+</div>
+<section class="resumen">
+  <div class="resumen__dato">
+    <span class="resumen__numero">{{ catalogoCate.visibles().length }}</span>
+    <span class="resumen__texto">Categoria en el Catalogo</span>
+  </div>
+</section>
+<div class="buscador">
+  <input type="search" [formControl]="busqueda" placeholder="Buscar por Nombre" />
+  <span class="buscador__estado">
+    @if (catalogoCate.cargando()) {
+      Buscando...
+    }
+  </span>
+</div>
+@if (catalogoCate.error(); as error) {
+  <div class="aviso--error">{{ error }}</div>
+} @else if (catalogoCate.cargando()) {
+  <div class="rejilla">
+    <div class="esqueleto"></div>
+    <div class="esqueleto"></div>
+    <div class="esqueleto"></div>
+  </div>
+} @else {
+  <div class="tablero">
+    <div class="rejilla">
+      @for (categoria of catalogoCate.visibles(); track categoria.idCategoria) {
+        <app-targeta-categoria
+          [categoria]="categoria"
+          [activa]="categoria.idCategoria === catalogoCate.seleccionada()?.idCategoria"
+          (seleccionar)="catalogoCate.seleccionar($event)"
+        ></app-targeta-categoria>
+      } @empty {
+        <p class="vacio">No hay Categorias Disponibles</p>
+      }
+    </div>
+    <!--
+    <aside class="targeta lateral">
+      @if (catalogo.seleccionado(); as c) {
+        <img [src]="apiUrl + c.imagen" [alt]="c.nombre" />
+        <h2>{{ c.nombre }}</h2>
+        <p>{{ c.descripcion }}</p>
+        <div class="actiones">
+          <a [routerLink]="['/clases', c.id, 'editar']" class="boton">Editar</a>
+          <button (click)="eliminar(c.id)">Eliminar</button>
+        </div>
+      }
+    </aside>-->
+  </div>
+}

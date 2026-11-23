@@ -11,7 +11,7 @@ import { CategoriasApi } from './categorias-api';
 @Service()
 export class CatalogoCategorias {
   private readonly recurso = httpResource<Sobre<Categoria[]>>(() => `${API_URL}/categorias`);
-  private readonly categoria = computed(() => this.recurso.value()?.data ?? []);
+  private readonly categorias = computed(() => this.recurso.value()?.data ?? []);
   private readonly apí = inject(CategoriasApi);
   private readonly _texto = signal('');
 
@@ -26,7 +26,7 @@ export class CatalogoCategorias {
 
   readonly visibles = computed(() => {
     const cate = this.nombre();
-    const todas = this.categoria();
+    const todas = this.categorias();
     return cate === 'Todos' ? todas : todas.filter((u) => u.nombre === cate);
   });
 

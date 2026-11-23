@@ -1,1 +1,54 @@
-<p>lista-compras works!</p>
+<div class="encabezado">
+  <h1>Catalogo de Compras</h1>
+  <p>Estos datos son del Archivo local</p>
+  <a routerLink="/productos/nuevo" class="boton">+ Nueva Compra</a>
+</div>
+<section class="resumen">
+  <div class="resumen__dato">
+    <span class="resumen__numero">{{ catalogoCompra.visibles().length }}</span>
+    <span class="resumen__texto">Compras en el Catalogo</span>
+  </div>
+</section>
+<div class="buscador">
+  <input type="search" [formControl]="busqueda" placeholder="Buscar por Nombre" />
+  <span class="buscador__estado">
+    @if (catalogoCompra.cargando()) {
+      Buscando...
+    }
+  </span>
+</div>
+@if (catalogoCompra.error(); as error) {
+  <div class="aviso--error">{{ error }}</div>
+} @else if (catalogoCompra.cargando()) {
+  <div class="rejilla">
+    <div class="esqueleto"></div>
+    <div class="esqueleto"></div>
+    <div class="esqueleto"></div>
+  </div>
+} @else {
+  <div class="tablero">
+    <div class="rejilla">
+      @for (compra of catalogoCompra.visibles(); track compra.idCompra) {
+        <app-targeta-compra
+          [compra]="compra"
+          [activa]="compra.idCompra === catalogoCompra.seleccionada()?.idCompra"
+          (seleccionar)="catalogoCompra.seleccionar($event)"
+        ></app-targeta-compra>
+      } @empty {
+        <p class="vacio">No hay Compras Disponibles</p>
+      }
+    </div>
+    <!--
+    <aside class="targeta lateral">
+      @if (catalogo.seleccionado(); as c) {
+        <img [src]="apiUrl + c.imagen" [alt]="c.nombre" />
+        <h2>{{ c.nombre }}</h2>
+        <p>{{ c.descripcion }}</p>
+        <div class="actiones">
+          <a [routerLink]="['/clases', c.id, 'editar']" class="boton">Editar</a>
+          <button (click)="eliminar(c.id)">Eliminar</button>
+        </div>
+      }
+    </aside>-->
+  </div>
+}

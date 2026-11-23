@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, input, output } from '@angular/core';
+import { Categoria } from '../../modelos/categoria';
 
 @Component({
   imports: [],
@@ -6,4 +7,8 @@ import { Component } from '@angular/core';
   styleUrl: './targeta-categoria.css',
   templateUrl: './targeta-categoria.html',
 })
-export class TargetaCategoria {}
+export class TargetaCategoria {
+  readonly categoria = input.required<Categoria>();
+  readonly activa = input(false);
+  readonly seleccionar = output<Categoria>();
+}
