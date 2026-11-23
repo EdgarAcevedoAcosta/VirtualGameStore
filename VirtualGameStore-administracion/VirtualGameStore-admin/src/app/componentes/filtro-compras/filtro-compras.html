@@ -1,1 +1,10 @@
-<p>filtro-compras works!</p>
+<div class="filtro">
+  @for (opcion of opciones; track opcion) {
+    <button
+      [class.activo]="catalogoCompras.estado() === opcion"
+      (click)="catalogoCompras.filtrar(opcion)"
+    >
+      {{ opcion }}
+    </button>
+  }
+</div>

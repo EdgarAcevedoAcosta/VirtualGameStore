@@ -9,3 +9,4 @@ export interface Usuario {
 
 export type UsuarioNuevo = Omit<Usuario, 'idUsuario'>;
 export type Rol = 'admin' | 'usuario';
+export const ROLES: Rol[] = ['admin', 'usuario'];

@@ -1,1 +1,10 @@
-<p>filtro-usuarios works!</p>
+<div class="filtro">
+  @for (opcion of opciones; track opcion) {
+    <button
+      [class.activo]="catalogoUsuarios.rol() === opcion"
+      (click)="catalogoUsuarios.filtrar(opcion)"
+    >
+      {{ opcion }}
+    </button>
+  }
+</div>

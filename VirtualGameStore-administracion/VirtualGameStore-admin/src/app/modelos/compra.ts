@@ -9,3 +9,10 @@ export interface Compra {
 }
 export type CompraNueva = Omit<Compra, 'idCompra'>;
 export type EstadoCompra = 'pendiente' | 'procesando' | 'enviando' | 'entregado' | 'cancelado';
+export const ESTADOCOMPRA: EstadoCompra[] = [
+  'pendiente',
+  'procesando',
+  'enviando',
+  'entregado',
+  'cancelado',
+];
