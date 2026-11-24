@@ -1,18 +1,18 @@
 <article
   class="tarjeta-categoria"
-  [class.tarjeta-clase--activa]="activa()"
+  [class.tarjeta-categoria--activa]="activa()"
   (click)="seleccionar.emit(categoria())"
 >
   <div class="tarjeta-categoria__cuerpo">
     <h3 class="tarjeta-categoria__nombre">{{ categoria().nombre }}</h3>
-  </div>
-  <div class="acciones">
-    <a [routerLink]="['/categorias', categoria().idCategoria]" class="boton-editar"
-      >Editar Categoria</a
-    >
-    <!--
+    <div class="acciones">
+      <a [routerLink]="['/categorias', categoria().idCategoria, 'editar']" class="boton editar"
+        >Editar Categoria</a
+      >
+      <!--
     <button class="boton-eliminar" (click)="eliminar(direccion().idDireccion)">
       <img src="/public/delete.png" alt="Eliminar" class="icon-delete" />
     </button>-->
+    </div>
   </div>
 </article>

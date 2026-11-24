@@ -1,34 +1,35 @@
 <article
   class="tarjeta-producto"
-  [class.tarjeta-clase--activa]="activa()"
+  [class.tarjeta-producto--activa]="activa()"
   (click)="seleccionar.emit(producto())"
 >
   <img [src]="producto().imagenUrl" [alt]="producto().nombre" />
   <div class="tarjeta-producto__cuerpo">
     <h3 class="tarjeta-producto__nombre">{{ producto().nombre }}</h3>
-    <p class="tarjeta-clase__desc">{{ producto().descripcion }}</p>
-    <div class="tarjeta-producto__disp">
+    <p class="tarjeta-producto__desc">{{ producto().descripcion }}</p>
+    <div class="caracteristicas">
       <p class="tarjeta-producto__precio">{{ producto().precio }}</p>
-      <p class="tarjeta-producto__stock">{{ producto().stock }}</p>
+      <p class="tarjeta-producto__stock">• {{ producto().stock }} Disponibles</p>
     </div>
-  </div>
-  <p class="producto__desc">
-    @switch (producto().estado) {
-      @case ('activo') {
-        Producto Activo
+    <p class="tarjeta-producto__desc">
+      @switch (producto().estado) {
+        @case ('activo') {
+          Producto Activo
+        }
+        @case ('inactivo') {
+          Producto Inactivo
+        }
       }
-      @case ('inactivo') {
-        Producto Inactivo
-      }
-    }
-  </p>
-  <div class="acciones">
-    <a [routerLink]="['/productos', producto().idProducto, 'editar']" class="boton-editar"
-      >Editar Producto</a
-    >
-    <!--
+    </p>
+    <div class="acciones">
+      <a [routerLink]="['/productos', producto().idProducto, 'editar']" class="boton editar"
+        >Editar Producto</a
+      >
+      <!--
     <button class="boton-eliminar" (click)="eliminar(producto().idProducto)">
       <img src="/public/delete.png" alt="Eliminar" class="icon-delete" />
     </button>-->
+    </div>
   </div>
+  <!-- Pude ser que esto lo cambie para que cuando este activo se vea como alado del nombre un estado-->
 </article>

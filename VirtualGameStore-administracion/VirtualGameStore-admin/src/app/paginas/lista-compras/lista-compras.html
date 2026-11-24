@@ -1,7 +1,7 @@
 <div class="encabezado">
   <h1>Catalogo de Compras</h1>
   <p>Estos datos son del Archivo local</p>
-  <a routerLink="/productos/nuevo" class="boton">+ Nueva Compra</a>
+  <a routerLink="/compras/nuevo" class="boton">+ Nueva Compra</a>
 </div>
 <section class="resumen">
   <div class="resumen__dato">
@@ -17,6 +17,7 @@
     }
   </span>
 </div>
+<app-filtro-compras></app-filtro-compras>
 @if (catalogoCompra.error(); as error) {
   <div class="aviso--error">{{ error }}</div>
 } @else if (catalogoCompra.cargando()) {

@@ -1,22 +1,22 @@
 <article
-  class="tarjeta-clase"
-  [class.tarjeta-clase--activa]="activa()"
+  class="tarjeta-direccion"
+  [class.tarjeta-direccion--activa]="activa()"
   (click)="seleccionar.emit(direccion())"
 >
-  <div class="tarjeta-clase__cuerpo">
-    <h3 class="tarjeta-clase__nombre">{{ direccion().idUsuario }}</h3>
-    <p class="tarjeta-clase__desc">{{ direccion().pais }}</p>
-    <p class="tarjeta-clase__desc">{{ direccion().ciudad }}</p>
-    <p class="tarjeta-clase__desc">{{ direccion().calle }}</p>
-    <p class="tarjeta-clase__desc">{{ direccion().codigoPostal }}</p>
-  </div>
-  <div class="acciones">
-    <a [routerLink]="['/direcciones', direccion().idDireccion, 'editar']" class="boton-editar"
-      >Editar Direccion</a
-    >
-    <!--
+  <div class="tarjeta-direccion__cuerpo">
+    <h3 class="tarjeta-direccion__usuario">{{ direccion().idUsuario }}</h3>
+    <p class="tarjeta-direccion__contx">{{ direccion().pais }}</p>
+    <p class="tarjeta-direccion__contx">{{ direccion().ciudad }}</p>
+    <p class="tarjeta-direccion__contx">{{ direccion().calle }}</p>
+    <p class="tarjeta-direccion__contx">{{ direccion().codigoPostal }}</p>
+    <div class="acciones">
+      <a [routerLink]="['/direcciones', direccion().idDireccion, 'editar']" class="boton editar"
+        >Editar Direccion</a
+      >
+      <!--
     <button class="boton-eliminar" (click)="eliminar(direccion().idDireccion)">
       <img src="/public/delete.png" alt="Eliminar" class="icon-delete" />
     </button>-->
+    </div>
   </div>
 </article>

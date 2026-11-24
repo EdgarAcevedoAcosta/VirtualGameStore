@@ -1,10 +1,9 @@
-import { TitleCasePipe } from '@angular/common';
 import { Component, input, output } from '@angular/core';
 import { Producto } from '../../modelos/producto';
 import { RouterLink } from '@angular/router';
 
 @Component({
-  imports: [TitleCasePipe, RouterLink],
+  imports: [RouterLink],
   selector: 'app-targeta-producto',
   styleUrl: './targeta-producto.css',
   templateUrl: './targeta-producto.html',

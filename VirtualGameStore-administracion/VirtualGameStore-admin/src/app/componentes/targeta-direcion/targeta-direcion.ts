@@ -1,10 +1,9 @@
-import { TitleCasePipe } from '@angular/common';
 import { Component, input, output } from '@angular/core';
 import { Direccion } from '../../modelos/direccion';
 import { RouterLink } from '@angular/router';
 
 @Component({
-  imports: [TitleCasePipe, RouterLink],
+  imports: [RouterLink],
   selector: 'app-targeta-direcion',
   styleUrl: './targeta-direcion.css',
   templateUrl: './targeta-direcion.html',
