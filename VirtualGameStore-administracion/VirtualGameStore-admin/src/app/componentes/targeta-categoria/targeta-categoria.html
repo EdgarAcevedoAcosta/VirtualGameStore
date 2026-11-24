@@ -7,12 +7,12 @@
     <h3 class="tarjeta-categoria__nombre">{{ categoria().nombre }}</h3>
     <div class="acciones">
       <a [routerLink]="['/categorias', categoria().idCategoria, 'editar']" class="boton editar"
-        >Editar Categoria</a
+        ><img src="/edit.ico" alt="Editar" class="icon-delete" /> Editar Categoria</a
       >
-      <!--
-    <button class="boton-eliminar" (click)="eliminar(direccion().idDireccion)">
-      <img src="/public/delete.png" alt="Eliminar" class="icon-delete" />
-    </button>-->
+      <!---->
+      <button class="boton-eliminar" (click)="eliminar(categoria().idCategoria)">
+        <img src="/trash.ico" alt="Eliminar" class="icon-delete" />
+      </button>
     </div>
   </div>
 </article>

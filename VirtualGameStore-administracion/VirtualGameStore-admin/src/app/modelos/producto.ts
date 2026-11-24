@@ -27,7 +27,8 @@ export interface CategoriaProducto extends Producto {
 export const IMAGENES: string[] = [
   '/img/zelda-breath-of-the-wild.jpg',
   '/img/super-mario-odyssey.jpg',
-  'pokemon-legends-arceus.jpg',
+  '/img/pokemon-legends-arceus.jpg',
   '/img/animal-crossing-new-horizons.jpg',
   '/img/mario-kart-8-deluxe.jpg',
+  '/img/kirbyEpicYarn.jpg',
 ];

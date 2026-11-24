@@ -91,7 +91,7 @@ export const routes: Routes = [
         title: 'Nuevo Compra - Admin',
       },
       {
-        path: 'productos/:id/editar',
+        path: 'compras/:id/editar',
         loadComponent: () =>
           import('./paginas/formulario-compra/formulario-compra').then((m) => m.FormularioCompra),
         title: 'Editar Compra - Admin',
