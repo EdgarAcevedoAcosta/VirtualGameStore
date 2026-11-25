@@ -23,7 +23,7 @@ export class UsuariosApi {
   }
   eliminar(idUsuario: number) {
     return this.http
-      .delete<Sobre<Usuario>>(`${API_URL}/usuarios/${idUsuario}`)
+      .delete<Sobre<boolean>>(`${API_URL}/usuarios/${idUsuario}`)
       .pipe(map((r) => r.data));
   }
   listar(q = '') {

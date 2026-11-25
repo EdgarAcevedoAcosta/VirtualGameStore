@@ -30,7 +30,7 @@ export class FormularioProducto {
   protected readonly guardando = signal(false);
   protected readonly erroresServidor = signal<string[]>([]);
 
-  readonly idProducto = input<string>();
+  readonly idProducto = input<string | undefined>(undefined, { alias: 'id' });
   private readonly fb = inject(FormBuilder);
 
   protected readonly form = this.fb.nonNullable.group({

@@ -24,7 +24,7 @@ export class ComprasApi {
   }
   eliminar(idCompra: number) {
     return this.http
-      .delete<Sobre<Compra>>(`${API_URL}/compras/${idCompra}`)
+      .delete<Sobre<boolean>>(`${API_URL}/compras/${idCompra}`)
       .pipe(map((r) => r.data));
   }
   listar(q = '') {

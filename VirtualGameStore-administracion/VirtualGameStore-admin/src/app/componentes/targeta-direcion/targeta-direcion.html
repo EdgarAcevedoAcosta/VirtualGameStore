@@ -13,10 +13,17 @@
       <a [routerLink]="['/direcciones', direccion().idDireccion, 'editar']" class="boton editar"
         >Editar Direccion</a
       >
-      <!--
-    <button class="boton-eliminar" (click)="eliminar(direccion().idDireccion)">
-      <img src="/public/delete.png" alt="Eliminar" class="icon-delete" />
-    </button>-->
+      <button
+        class="boton-eliminar"
+        type="button"
+        [disabled]="eliminando()"
+        (click)="$event.stopPropagation(); eliminar(direccion().idDireccion)"
+      >
+        <img src="/trash.ico" alt="Eliminar" class="icon-delete-grande" />
+      </button>
+      @if (errorEliminar(); as error) {
+        <p class="error" role="alert">{{ error }}</p>
+      }
     </div>
   </div>
 </article>

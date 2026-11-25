@@ -39,7 +39,7 @@
         [disabled]="eliminando()"
         (click)="$event.stopPropagation(); eliminar(producto().idProducto)"
       >
-        <img src="/trash.ico" alt="Eliminar" class="icon-delete" />
+        <img src="/trash.ico" alt="Eliminar" class="icon-delete-grande" />
       </button>
       @if (errorEliminar(); as error) {
         <p class="error" role="alert">{{ error }}</p>

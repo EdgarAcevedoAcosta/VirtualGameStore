@@ -25,7 +25,7 @@ export class FormularioDireccion {
   protected readonly erroresServidor = signal<string[]>([]);
   protected readonly usuarios = signal<Usuario[]>([]);
 
-  readonly idDireccion = input<string>();
+  readonly idDireccion = input<string | undefined>(undefined, { alias: 'id' });
 
   protected readonly form = inject(FormBuilder).nonNullable.group({
     calle: ['', [Validators.required, Validators.maxLength(50)]],

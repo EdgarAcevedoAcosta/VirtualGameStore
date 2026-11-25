@@ -25,7 +25,7 @@ export class DireccionesApi {
   }
   eliminar(idDireccion: number) {
     return this.http
-      .delete<Sobre<Direccion>>(`${API_URL}/direcciones/${idDireccion}`)
+      .delete<Sobre<boolean>>(`${API_URL}/direcciones/${idDireccion}`)
       .pipe(map((r) => r.data));
   }
   listar(q = '') {

@@ -22,7 +22,7 @@ export class TargetaProducto {
   protected readonly errorEliminar = signal<string | null>(null);
 
   eliminar(idProducto: number): void {
-    if (this.eliminando() || !confirm(`Estas Seguro de Eliminar esta Categoria???`)) return;
+    if (this.eliminando() || !confirm(`Estas Seguro de Eliminar este Producto???`)) return;
     this.errorEliminar.set(null);
     this.eliminando.set(true);
     this.api.eliminar(idProducto).subscribe({

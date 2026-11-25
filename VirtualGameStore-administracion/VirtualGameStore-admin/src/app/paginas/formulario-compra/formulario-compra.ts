@@ -24,7 +24,7 @@ export class FormularioCompra {
   protected readonly guardando = signal(false);
   protected readonly erroresServidor = signal<string[]>([]);
 
-  readonly idCompra = input<string>();
+  readonly idCompra = input<string | undefined>(undefined, { alias: 'id' });
 
   protected readonly form = inject(FormBuilder).nonNullable.group({
     idUsuario: [0, [Validators.required]],

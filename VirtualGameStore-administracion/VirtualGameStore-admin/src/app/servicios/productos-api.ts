@@ -22,7 +22,7 @@ export class ProductosApi {
   }
   eliminar(idProducto: number) {
     return this.http
-      .delete<Sobre<Producto>>(`${API_URL}/productos/${idProducto}`)
+      .delete<Sobre<boolean>>(`${API_URL}/productos/${idProducto}`)
       .pipe(map((r) => r.data));
   }
   listar(q = '') {
