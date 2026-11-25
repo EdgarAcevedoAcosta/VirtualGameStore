@@ -7,6 +7,13 @@
   <div class="tarjeta-producto__cuerpo">
     <h3 class="tarjeta-producto__nombre">{{ producto().nombre }}</h3>
     <p class="tarjeta-producto__desc">{{ producto().descripcion }}</p>
+    @if (producto().categorias.length) {
+      <p class="tarjeta-producto__desc">
+        @for (categoria of producto().categorias; track categoria.idCategoria) {
+          • {{ categoria.nombre }}{{ $last ? '' : ' ' }}
+        }
+      </p>
+    }
     <div class="caracteristicas">
       <p class="tarjeta-producto__precio">{{ producto().precio }}</p>
       <p class="tarjeta-producto__stock">• {{ producto().stock }} Disponibles</p>
@@ -25,10 +32,18 @@
       <a [routerLink]="['/productos', producto().idProducto, 'editar']" class="boton editar"
         >Editar Producto</a
       >
-      <!--
-    <button class="boton-eliminar" (click)="eliminar(producto().idProducto)">
-      <img src="/public/delete.png" alt="Eliminar" class="icon-delete" />
-    </button>-->
+      <!---->
+      <button
+        class="boton-eliminar"
+        type="button"
+        [disabled]="eliminando()"
+        (click)="$event.stopPropagation(); eliminar(producto().idProducto)"
+      >
+        <img src="/trash.ico" alt="Eliminar" class="icon-delete" />
+      </button>
+      @if (errorEliminar(); as error) {
+        <p class="error" role="alert">{{ error }}</p>
+      }
     </div>
   </div>
   <!-- Pude ser que esto lo cambie para que cuando este activo se vea como alado del nombre un estado-->

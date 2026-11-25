@@ -25,17 +25,15 @@
       <span class="error">La Descripción es Obligatoria.</span>
     }
   </div>
-  <!--
-  <div class="fila">
-    <div class="campo">
-      <label for="categoria">Categoria</label>
-      <select formGroupName="categoria" id="categoria">
-        @for (c of categorias; track c) {
-          <option [value]="c">{{ c }}</option>
-        }
-      </select>
-    </div>
-  </div>-->
+  <div class="campo">
+    <app-targeta-agregar-categorias
+      [categorias]="categorias()"
+      [control]="f.categorias"
+    />
+    @if (f.categorias.touched && f.categorias.hasError('required')) {
+      <span class="error">Selecciona al menos una categoría</span>
+    }
+  </div>
   <div class="campo">
     <label for="precio">Precio del Videojuego</label>
     <input id="precio" type="number" formControlName="precio" />
@@ -51,7 +49,7 @@
   </div>
   <div class="campo">
     <label for="stock">Stock Actual</label>
-    <input id="stock" type="number" formControlName="stock" />
+    <input id="stock" type="number" min="0" max="20" step="1" formControlName="stock" />
     @if (f.stock.touched && f.stock.hasError('required')) {
       <span class="error">Escribe el Stock</span>
     }
@@ -60,6 +58,9 @@
     }
     @if (f.stock.touched && f.stock.hasError('max')) {
       <span class="error">El Stock Minimo es de 20</span>
+    }
+    @if (f.stock.touched && f.stock.hasError('integer')) {
+      <span class="error">El Stock debe ser un numero entero</span>
     }
   </div>
 

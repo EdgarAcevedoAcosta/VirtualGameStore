@@ -49,9 +49,17 @@
   </div>
   <div class="campo">
     <label for="idUsuario">Usuario</label>
-    <input id="idUsuario" formControlName="idUsuario" type="number" />
+    <select id="idUsuario" formControlName="idUsuario">
+      <option [ngValue]="0" disabled>Selecciona un usuario</option>
+      @for (usuario of usuarios(); track usuario.idUsuario) {
+        <option [ngValue]="usuario.idUsuario">{{ usuario.nombre }}</option>
+      }
+    </select>
     @if (f.idUsuario.touched && f.idUsuario.hasError('required')) {
       <span class="error">El Usuario es Obligatorio</span>
+    }
+    @if (f.idUsuario.touched && f.idUsuario.hasError('min')) {
+      <span class="error">Selecciona un usuario</span>
     }
   </div>
 

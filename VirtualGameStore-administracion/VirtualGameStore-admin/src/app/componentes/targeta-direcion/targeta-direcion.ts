@@ -10,6 +10,7 @@ import { RouterLink } from '@angular/router';
 })
 export class TargetaDirecion {
   readonly direccion = input.required<Direccion>();
+  readonly nombreUsuario = input.required<string>();
   readonly activa = input(false);
   readonly seleccionar = output<Direccion>();
 }

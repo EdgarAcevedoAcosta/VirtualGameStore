@@ -17,6 +17,9 @@
     }
   </span>
 </div>
+@if (errorUsuarios(); as error) {
+  <div class="aviso--error">{{ error }}</div>
+}
 @if (catalogoDirec.error(); as error) {
   <div class="aviso--error">{{ error }}</div>
 } @else if (catalogoDirec.cargando()) {
@@ -31,6 +34,7 @@
       @for (direccion of catalogoDirec.visibles(); track direccion.idDireccion) {
         <app-targeta-direcion
           [direccion]="direccion"
+          [nombreUsuario]="nombreUsuario(direccion.idUsuario)"
           [activa]="direccion.idDireccion === catalogoDirec.seleccionada()?.idDireccion"
           (seleccionar)="catalogoDirec.seleccionar($event)"
         ></app-targeta-direcion>

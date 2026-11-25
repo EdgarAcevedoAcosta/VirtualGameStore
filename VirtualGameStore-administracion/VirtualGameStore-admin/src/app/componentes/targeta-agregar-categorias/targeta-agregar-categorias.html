@@ -1,0 +1,16 @@
+<fieldset class="lista-categorias">
+  <legend>Elige una o varias categorías</legend>
+  @for (categoria of categorias(); track categoria.idCategoria) {
+    <label class="categoria" [for]="'categoria-' + categoria.idCategoria">
+      <input
+        type="checkbox"
+        [id]="'categoria-' + categoria.idCategoria"
+        [checked]="control().value.includes(categoria.idCategoria)"
+        (change)="alternar(categoria.idCategoria, $event)"
+      />
+      <span>{{ categoria.nombre }}</span>
+    </label>
+  } @empty {
+    <p>No hay categorías disponibles</p>
+  }
+</fieldset>

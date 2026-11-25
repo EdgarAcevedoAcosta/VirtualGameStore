@@ -30,7 +30,6 @@ export class FormularioUsuario {
     nombre: ['', [Validators.required, Validators.maxLength(50)]],
     correo: ['', [Validators.required, Validators.maxLength(160)]],
     passwordHash: ['', [Validators.required, Validators.maxLength(255)]],
-    creadoEn: [new Date(), [Validators.required]],
     rol: ['cliente', [Validators.required]],
     activo: ['activo', [Validators.maxLength(7)]],
   });

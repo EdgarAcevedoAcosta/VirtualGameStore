@@ -4,7 +4,7 @@
   (click)="seleccionar.emit(direccion())"
 >
   <div class="tarjeta-direccion__cuerpo">
-    <h3 class="tarjeta-direccion__usuario">{{ direccion().idUsuario }}</h3>
+    <h3 class="tarjeta-direccion__usuario">{{ nombreUsuario() }}</h3>
     <p class="tarjeta-direccion__contx">{{ direccion().pais }}</p>
     <p class="tarjeta-direccion__contx">{{ direccion().ciudad }}</p>
     <p class="tarjeta-direccion__contx">{{ direccion().calle }}</p>

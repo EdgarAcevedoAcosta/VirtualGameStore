@@ -11,16 +11,13 @@ import { CategoriasApi } from './categorias-api';
 @Service()
 export class CatalogoCategorias {
   private readonly recurso = httpResource<Sobre<Categoria[]>>(() => `${API_URL}/categorias`);
-  private readonly categorias = computed(() => this.recurso.value()?.data ?? []);
+  private readonly categorias = computed(() => this.resultado().categorias);
   private readonly apí = inject(CategoriasApi);
   private readonly _texto = signal('');
 
   readonly texto = this._texto.asReadonly();
-  readonly cargando = computed(() => this.recurso.isLoading());
-  readonly error = computed(() => {
-    const e = this.recurso.error();
-    return e ? mensajeDeApi(e) : null;
-  });
+  readonly cargando = computed(() => this.resultado().cargando);
+  readonly error = computed(() => this.resultado().error);
   readonly nombre = signal<Cat | 'Todos'>('Todos');
   readonly seleccionada = signal<Categoria | null>(null);
 

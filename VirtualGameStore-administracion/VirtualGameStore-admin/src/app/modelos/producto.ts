@@ -8,9 +8,12 @@ export interface Producto {
   stock: number;
   imagenUrl: string;
   estado: string;
+  categorias: Categoria[];
 }
 
-export type ProductoNuevo = Omit<Producto, 'idProducto'>;
+export type ProductoNuevo = Omit<Producto, 'idProducto' | 'categorias'> & {
+  categorias: number[];
+};
 
 export interface Sobre<T> {
   data: T;

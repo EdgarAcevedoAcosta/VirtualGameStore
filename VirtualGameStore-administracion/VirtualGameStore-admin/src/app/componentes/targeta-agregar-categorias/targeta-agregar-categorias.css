@@ -1,0 +1,19 @@
+.lista-categorias {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  border: 1px solid currentColor;
+  border-radius: 0.5rem;
+  padding: 0.75rem;
+}
+
+.lista-categorias legend {
+  padding: 0 0.35rem;
+}
+
+.categoria {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  cursor: pointer;
+}

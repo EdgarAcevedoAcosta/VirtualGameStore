@@ -18,36 +18,36 @@ export class FormularioCategoria {
   private readonly api = inject(CategoriasApi);
   private readonly catalogoCategoria = inject(CatalogoCategorias);
   private readonly router = inject(Router);
+  readonly id = input<string>();
+
   protected readonly guardando = signal(false);
   protected readonly erroresServidor = signal<string[]>([]);
 
-  readonly idCategoria = input<string>();
-
-  protected readonly form = inject(FormBuilder).nonNullable.group({
-    nombre: ['', [Validators.required, Validators.maxLength(30)]],
-  });
-
   ngOnInit(): void {
-    const id = this.idCategoria();
+    const id = this.id();
     if (!id) return;
     this.api.obtener(Number(id)).subscribe({
       next: (p) => this.form.patchValue(p),
       error: (e) => this.erroresServidor.set([mensajeDeApi(e)]),
     });
   }
+
+  protected readonly form = inject(FormBuilder).nonNullable.group({
+    nombre: ['', [Validators.required, Validators.maxLength(30)]],
+  });
   protected get f() {
     return this.form.controls;
   }
 
   protected guardar(): void {
     if (this.form.invalid) {
-      this.form.markAsTouched();
+      this.form.markAllAsTouched();
       return;
     }
     this.guardando.set(true);
     this.erroresServidor.set([]);
     const datos = this.form.getRawValue();
-    const id = this.idCategoria();
+    const id = this.id();
     const peticion = id ? this.api.actualizar(Number(id), datos) : this.api.crear(datos);
 
     peticion.subscribe({

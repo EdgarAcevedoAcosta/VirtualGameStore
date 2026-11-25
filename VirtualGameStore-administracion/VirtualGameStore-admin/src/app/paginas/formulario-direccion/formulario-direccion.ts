@@ -6,6 +6,8 @@ import { mensajeDeApi, mensajesDelCuerpo } from '../../servicios/errores';
 import { HttpErrorResponse } from '@angular/common/http';
 import { DireccionesApi } from '../../servicios/direcciones-api';
 import { CatalogoDirecciones } from '../../servicios/catalogo-direcciones';
+import { UsuariosApi } from '../../servicios/usuarios-api';
+import { Usuario } from '../../modelos/usuario';
 
 @Component({
   imports: [ReactiveFormsModule, RouterLink],
@@ -16,10 +18,12 @@ import { CatalogoDirecciones } from '../../servicios/catalogo-direcciones';
 export class FormularioDireccion {
   protected readonly apiUrl = API_URL;
   private readonly api = inject(DireccionesApi);
+  private readonly usuariosApi = inject(UsuariosApi);
   private readonly catalogoDireccion = inject(CatalogoDirecciones);
   private readonly router = inject(Router);
   protected readonly guardando = signal(false);
   protected readonly erroresServidor = signal<string[]>([]);
+  protected readonly usuarios = signal<Usuario[]>([]);
 
   readonly idDireccion = input<string>();
 
@@ -28,10 +32,15 @@ export class FormularioDireccion {
     ciudad: ['', [Validators.required, Validators.maxLength(50)]],
     codigoPostal: ['00000', [Validators.required, Validators.maxLength(5)]],
     pais: ['', [Validators.required, Validators.maxLength(50)]],
-    idUsuario: [0, [Validators.required]],
+    idUsuario: [0, [Validators.required, Validators.min(1)]],
   });
 
   ngOnInit(): void {
+    this.usuariosApi.listar().subscribe({
+      next: (usuarios) => this.usuarios.set(usuarios),
+      error: (e) => this.erroresServidor.set([mensajeDeApi(e)]),
+    });
+
     const id = this.idDireccion();
     if (!id) return;
     this.api.obtener(Number(id)).subscribe({
@@ -45,7 +54,7 @@ export class FormularioDireccion {
 
   protected guardar(): void {
     if (this.form.invalid) {
-      this.form.markAsTouched();
+      this.form.markAllAsTouched();
       return;
     }
     this.guardando.set(true);

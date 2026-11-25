@@ -29,19 +29,12 @@
   </div>
   <div class="campo">
     <label for="passwordHash">Contraseña</label>
-    <input id="passwordHash" formControlName="passwordHash" />
+    <input id="passwordHash" formControlName="passwordHash" type="password" />
     @if (f.passwordHash.touched && f.passwordHash.hasError('required')) {
       <span class="error">La Contraseña es Obligatoria</span>
     }
     @if (f.correo.hasError('maxlength')) {
       <span class="error">La Contraseña es muy Larga</span>
-    }
-  </div>
-  <div class="campo">
-    <label for="creadoEn">Creado En</label>
-    <input id="creadoEn" type="date" formControlName="creadoEn" />
-    @if (f.creadoEn.touched && f.creadoEn.hasError('required')) {
-      <span class="error">Escribe la Fecha en que se Creo</span>
     }
   </div>
 
