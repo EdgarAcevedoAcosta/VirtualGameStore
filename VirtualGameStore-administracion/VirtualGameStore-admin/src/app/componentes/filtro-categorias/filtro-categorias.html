@@ -1,10 +1,13 @@
+@if (catalogoCate.error(); as error) {
+  <div class="aviso--error" role="alert">{{ error }}</div>
+}
 <div class="filtro">
-  @for (opcion of opciones; track opcion) {
+  @for (opcion of opciones(); track opcion?.idCategoria ?? 'todos') {
     <button
-      [class.activo]="catalogoCate.nombre() === opcion"
-      (click)="catalogoCate.filtrar(opcion)"
+      [class.activo]="catalogoProd.categoriaId() === (opcion?.idCategoria ?? null)"
+      (click)="catalogoProd.filtrarCategoria(opcion?.idCategoria ?? null)"
     >
-      {{ opcion }}
+      {{ opcion?.nombre ?? 'Todos' }}
     </button>
   }
 </div>

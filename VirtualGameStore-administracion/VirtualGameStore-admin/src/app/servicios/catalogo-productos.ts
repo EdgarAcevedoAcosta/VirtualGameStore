@@ -1,18 +1,13 @@
 import { httpResource } from '@angular/common/http';
-import { computed, inject, Service, signal } from '@angular/core';
+import { computed, Service, signal } from '@angular/core';
 import { EstadoProducto, Producto, Sobre } from '../modelos/producto';
 import { API_URL } from '../config';
-import { ProductosApi } from './productos-api';
 import { mensajeDeApi } from './errores';
-import { Categoria } from '../modelos/categoria';
-import { BehaviorSubject, catchError, map, of, startWith, switchMap } from 'rxjs';
-import { toSignal } from '@angular/core/rxjs-interop';
 
 @Service()
 export class CatalogoProductos {
   private readonly recurso = httpResource<Sobre<Producto[]>>(() => `${API_URL}/productos`);
   private readonly productos = computed(() => this.recurso.value()?.data ?? []);
-  private readonly apí = inject(ProductosApi);
   private readonly _texto = signal('');
 
   readonly texto = this._texto.asReadonly();
@@ -28,12 +23,19 @@ export class CatalogoProductos {
   }
 
   readonly estado = signal<EstadoProducto | 'Todas'>('Todas');
+  readonly categoriaId = signal<number | null>(null);
   readonly seleccionada = signal<Producto | null>(null);
 
   readonly visibles = computed(() => {
-    const cate = this.estado();
-    const todas = this.productos();
-    return cate === 'Todas' ? todas : todas.filter((c) => c.estado === cate);
+    const estado = this.estado();
+    const categoriaId = this.categoriaId();
+    const texto = this._texto().trim().toLocaleLowerCase();
+    return this.productos().filter((producto) =>
+        (estado === 'Todas' || producto.estado === estado) &&
+        (categoriaId === null ||
+          producto.categorias.some((item) => item.idCategoria === categoriaId)) &&
+        producto.nombre.toLocaleLowerCase().includes(texto),
+    );
   });
   filtrar(estado: EstadoProducto | 'Todas'): void {
     this.estado.set(estado);
@@ -42,36 +44,25 @@ export class CatalogoProductos {
       this.seleccionada.set(null);
     }
   }
-  private readonly busquedas = new BehaviorSubject<string>('');
 
+  filtrarCategoria(idCategoria: number | null): void {
+    this.categoriaId.set(idCategoria);
+    const elegida = this.seleccionada();
+    if (
+      elegida &&
+      idCategoria !== null &&
+      !elegida.categorias.some((item) => item.idCategoria === idCategoria)
+    ) {
+      this.seleccionada.set(null);
+    }
+  }
   recargar(): void {
     this.seleccionada.set(null);
-    this.busquedas.next(this.busquedas.value);
     this.recurso.reload();
   }
 
-  private readonly resultado = toSignal(
-    this.busquedas.pipe(
-      switchMap((q) =>
-        this.apí.listar(q).pipe(
-          map((productos): Resultado => ({ cargando: false, error: null, productos })),
-          catchError((e) =>
-            of<Resultado>({ cargando: false, error: mensajeDeApi(e), productos: [] }),
-          ),
-          startWith<Resultado>({ cargando: false, error: null, productos: [] }),
-        ),
-      ),
-    ),
-    { initialValue: { cargando: true, error: null, productos: [] } },
-  );
-
   buscar(texto: string): void {
-    (this._texto.set(texto), this.seleccionada.set(null), this.busquedas.next(texto));
+    this._texto.set(texto);
+    this.seleccionada.set(null);
   }
-}
-
-interface Resultado {
-  cargando: boolean;
-  error: string | null;
-  productos: Producto[];
 }

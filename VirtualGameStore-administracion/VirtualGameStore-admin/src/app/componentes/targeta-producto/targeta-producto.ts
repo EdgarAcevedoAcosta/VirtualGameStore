@@ -4,6 +4,7 @@ import { RouterLink } from '@angular/router';
 import { CatalogoProductos } from '../../servicios/catalogo-productos';
 import { ProductosApi } from '../../servicios/productos-api';
 import { mensajeDeApi } from '../../servicios/errores';
+import { API_URL } from '../../config';
 
 @Component({
   imports: [RouterLink],
@@ -15,6 +16,7 @@ export class TargetaProducto {
   readonly producto = input.required<Producto>();
   readonly activa = input(false);
   readonly seleccionar = output<Producto>();
+  protected readonly apiUrl = API_URL;
 
   protected readonly catalogoProductos = inject(CatalogoProductos);
   private readonly api = inject(ProductosApi);

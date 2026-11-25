@@ -23,7 +23,7 @@
 
     <div class="acciones">
       <a [routerLink]="['/usuarios', usuario().idUsuario, 'editar']" class="boton editar"
-        >Editar Usuario</a
+        ><img src="/edit.ico" alt="Editar" class="icon-delete" />Editar Usuario</a
       >
       <button
         class="boton-eliminar"
@@ -31,7 +31,7 @@
         [disabled]="eliminando()"
         (click)="$event.stopPropagation(); eliminar(usuario().idUsuario)"
       >
-        <img src="/trash.ico" alt="Eliminar" class="icon-delete-grande" />
+        <img src="/trash.ico" alt="Eliminar" class="icon-delete" />
       </button>
       @if (errorEliminar(); as error) {
         <p class="error" role="alert">{{ error }}</p>

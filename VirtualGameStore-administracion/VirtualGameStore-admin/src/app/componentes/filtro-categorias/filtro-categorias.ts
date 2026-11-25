@@ -1,6 +1,6 @@
 import { Component, inject } from '@angular/core';
 import { CatalogoCategorias } from '../../servicios/catalogo-categorias';
-import { CATEGORIAS } from '../../modelos/categoria';
+import { CatalogoProductos } from '../../servicios/catalogo-productos';
 
 @Component({
   imports: [],
@@ -10,5 +10,6 @@ import { CATEGORIAS } from '../../modelos/categoria';
 })
 export class FiltroCategorias {
   protected readonly catalogoCate = inject(CatalogoCategorias);
-  protected readonly opciones = ['Todos' as const, ...CATEGORIAS];
+  protected readonly catalogoProd = inject(CatalogoProductos);
+  protected readonly opciones = this.catalogoCate.opciones;
 }

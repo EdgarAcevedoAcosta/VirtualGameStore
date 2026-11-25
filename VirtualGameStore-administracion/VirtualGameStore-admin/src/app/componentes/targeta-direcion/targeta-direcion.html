@@ -11,7 +11,7 @@
     <p class="tarjeta-direccion__contx">{{ direccion().codigoPostal }}</p>
     <div class="acciones">
       <a [routerLink]="['/direcciones', direccion().idDireccion, 'editar']" class="boton editar"
-        >Editar Direccion</a
+        ><img src="/edit.ico" alt="Editar" class="icon-delete" />Editar Direccion</a
       >
       <button
         class="boton-eliminar"
@@ -19,7 +19,7 @@
         [disabled]="eliminando()"
         (click)="$event.stopPropagation(); eliminar(direccion().idDireccion)"
       >
-        <img src="/trash.ico" alt="Eliminar" class="icon-delete-grande" />
+        <img src="/trash.ico" alt="Eliminar" class="icon-delete" />
       </button>
       @if (errorEliminar(); as error) {
         <p class="error" role="alert">{{ error }}</p>

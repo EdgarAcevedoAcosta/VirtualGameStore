@@ -4,15 +4,16 @@
   (click)="seleccionar.emit(compra())"
 >
   <div class="tarjeta-compra__cuerpo">
-    <h3 class="tarjeta-compra__usuario">{{ compra().idUsuario }}</h3>
-    <h4 class="tarjeta-compra__fecha">{{ compra().fecha }}</h4>
+    <h3 class="tarjeta-compra__usuario">{{ nombreUsuario() }}</h3>
+    <p class="tarjeta-compra__direccion">{{ direccionCompleta() }}</p>
+    <h4 class="tarjeta-compra__fecha">{{ compra().fecha | date: 'dd/MM/yyyy' }}</h4>
     <div class="caracteristicas">
       <p class="tarjeta-compra__total">{{ compra().total }} $</p>
       <p class="tarjeta-compra__estado">• {{ compra().estado }}</p>
     </div>
     <div class="acciones">
       <a [routerLink]="['/compras', compra().idCompra, 'editar']" class="boton editar"
-        >Editar Compra</a
+        ><img src="/edit.ico" alt="Editar" class="icon-delete" />Editar Compra</a
       >
       <button
         class="boton-eliminar"
@@ -20,7 +21,7 @@
         [disabled]="eliminando()"
         (click)="$event.stopPropagation(); eliminar(compra().idCompra)"
       >
-        <img src="/trash.ico" alt="Eliminar" class="icon-delete-grande" />
+        <img src="/trash.ico" alt="Eliminar" class="icon-delete" />
       </button>
       @if (errorEliminar(); as error) {
         <p class="error" role="alert">{{ error }}</p>

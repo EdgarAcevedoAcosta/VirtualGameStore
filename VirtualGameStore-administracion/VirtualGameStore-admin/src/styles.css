@@ -18,9 +18,16 @@
   --linea: #eceff3;
 
   --principal: #6d4aff;
-  --botones: #8b6ffa8c;
-  --principal-hover: #5d3df0;
+  --botones: #f1edfc;
+  --textoBoton: #7051d6;
+  --principal-hover: #120355;
   --principal-claro: #efeaff;
+  --boton-agregar: #7051d6;
+  --texto-disponibilidad: #29816a;
+  --texto-sin-disponibilidad: #9c5860;
+  --seleccionar-catalogo: #24203f;
+  --icono-seleccionado: #3f365f;
+  --icono-sin-seleccionar: #f0ecfd;
 
   --exito: #22c55e;
   --advertencia: #f59e0b;
@@ -218,34 +225,6 @@ a {
   align-items: center;
 }
 
-/* --- horarios ----------------------------------------------------------- */
-.horarios {
-  display: grid;
-  gap: 0.6rem;
-  margin: 0.8rem 0 0;
-  padding: 0;
-  list-style: none;
-}
-.horario {
-  display: grid;
-  grid-template-columns: 1fr auto;
-  gap: 0.4rem 1rem;
-  align-items: center;
-  padding: 0.7rem 0.9rem;
-  border: 1px solid var(--linea);
-  border-radius: 8px;
-  background: var(--fondo);
-}
-.horario__cuando {
-  font-weight: 700;
-  color: var(--tinta);
-  text-transform: capitalize;
-}
-.horario__quien {
-  font-size: 0.86rem;
-  color: var(--apagado);
-}
-
 /* --- etiquetas ---------------------------------------------------------- */
 .etiqueta {
   display: inline-block;
@@ -294,6 +273,28 @@ a {
   background: var(--principal-hover);
 }
 .boton:hover:not(:disabled) {
+  filter: brightness(1.07);
+}
+
+.boton--nuevo {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.35rem;
+  border: 1px solid transparent;
+  border-radius: 10px;
+  padding: 0.5rem 1.1rem;
+  font: inherit;
+  font-weight: 600;
+  cursor: pointer;
+  background: var(--boton-agregar);
+  color: var(--linea);
+  text-decoration: none;
+}
+.boton--nuevo:hover {
+  background: var(--principal-hover);
+}
+.boton--nuevo:hover:not(:disabled) {
   filter: brightness(1.07);
 }
 .boton:disabled {
@@ -563,7 +564,7 @@ table.datos tr:nth-child(even) td {
 .tarjeta-compra--activa {
   border-color: var(--lima);
 }
-.tarjeta-producto img {
+.tarjeta-producto .imagen-producto {
   width: 100%;
   aspect-ratio: 16 / 9;
   object-fit: cover;
@@ -624,6 +625,14 @@ table.datos tr:nth-child(even) td {
 
   color: var(--tinta);
 }
+
+.stock {
+  color: var(--texto-disponibilidad);
+}
+
+.sin-stock {
+  color: var(--texto-sin-disponibilidad);
+}
 .icon-delete {
   width: 25px;
   height: 25px;
@@ -634,7 +643,7 @@ table.datos tr:nth-child(even) td {
   gap: 0.4rem;
   flex-wrap: wrap;
 
-  margin-bottom: 1rem;
+  margin-bottom: 0.2rem;
 }
 /* una etiqueta por categoría */
 .etiqueta--confirmada {
@@ -645,6 +654,42 @@ table.datos tr:nth-child(even) td {
 .etiqueta--lleno {
   background: #fee2e2;
   color: #b91c1c;
+}
+
+.etiqueta--RPG {
+  background: #cb5bffb2;
+  color: #37055f;
+  border-radius: 900px;
+}
+
+.etiqueta--Shooter {
+  background: #ff9a8dda;
+  color: #460404;
+  border-radius: 900px;
+}
+
+.etiqueta--Deportes {
+  background: #25deffb2;
+  color: #063394;
+  border-radius: 900px;
+}
+
+.etiqueta--Indie {
+  background: #35ce3da2;
+  color: #08640f;
+  border-radius: 900px;
+}
+
+.etiqueta--Aventura {
+  background: #ffe139b2;
+  color: #6a7509;
+  border-radius: 900px;
+}
+
+.etiqueta--Acción {
+  background: #ff9a8dda;
+  color: #460404;
+  border-radius: 900px;
 }
 /* --- filtro por categoría (componente <app-filtro-categoria>) ----------- */
 .filtro {

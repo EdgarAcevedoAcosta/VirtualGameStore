@@ -12,16 +12,13 @@ import { Compra, EstadoCompra } from '../modelos/compra';
 @Service()
 export class CatalogoCompras {
   private readonly recurso = httpResource<Sobre<Compra[]>>(() => `${API_URL}/compras`);
-  private readonly compras = computed(() => this.recurso.value()?.data ?? []);
+  private readonly compras = computed(() => this.resultado().compras);
   private readonly apí = inject(ComprasApi);
   private readonly _texto = signal('');
 
   readonly texto = this._texto.asReadonly();
-  readonly cargando = computed(() => this.recurso.isLoading());
-  readonly error = computed(() => {
-    const e = this.recurso.error();
-    return e ? mensajeDeApi(e) : null;
-  });
+  readonly cargando = computed(() => this.resultado().cargando);
+  readonly error = computed(() => this.resultado().error);
 
   readonly estado = signal<EstadoCompra | 'Todos'>('Todos');
   readonly seleccionada = signal<Compra | null>(null);

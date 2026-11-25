@@ -3,43 +3,38 @@
   [class.tarjeta-producto--activa]="activa()"
   (click)="seleccionar.emit(producto())"
 >
-  <img [src]="producto().imagenUrl" [alt]="producto().nombre" />
+  <img [src]="apiUrl + producto().imagenUrl" [alt]="producto().nombre" class="imagen-producto" />
   <div class="tarjeta-producto__cuerpo">
     <h3 class="tarjeta-producto__nombre">{{ producto().nombre }}</h3>
     <p class="tarjeta-producto__desc">{{ producto().descripcion }}</p>
     @if (producto().categorias.length) {
-      <p class="tarjeta-producto__desc">
+      <div class="caracteristicas">
         @for (categoria of producto().categorias; track categoria.idCategoria) {
-          • {{ categoria.nombre }}{{ $last ? '' : ' ' }}
+          <p [class]="'etiqueta--' + categoria.nombre">
+            • {{ categoria.nombre }}{{ $last ? ' ' : ' ' }}
+          </p>
         }
-      </p>
+      </div>
     }
     <div class="caracteristicas">
-      <p class="tarjeta-producto__precio">{{ producto().precio }}</p>
-      <p class="tarjeta-producto__stock">• {{ producto().stock }} Disponibles</p>
-    </div>
-    <p class="tarjeta-producto__desc">
-      @switch (producto().estado) {
-        @case ('activo') {
-          Producto Activo
-        }
-        @case ('inactivo') {
-          Producto Inactivo
-        }
+      <p class="tarjeta-producto__precio">{{ producto().precio }} $</p>
+      @if (producto().stock <= 0) {
+        <p class="tarjeta-producto__stock sin-stock">• Sin Stock</p>
+      } @else {
+        <p class="tarjeta-producto__stock stock">• {{ producto().stock }} Disponibles</p>
       }
-    </p>
+    </div>
     <div class="acciones">
       <a [routerLink]="['/productos', producto().idProducto, 'editar']" class="boton editar"
-        >Editar Producto</a
+        ><img src="/edit.ico" alt="Editar" class="icon-delete" /> Editar Productos</a
       >
-      <!---->
       <button
         class="boton-eliminar"
         type="button"
         [disabled]="eliminando()"
         (click)="$event.stopPropagation(); eliminar(producto().idProducto)"
       >
-        <img src="/trash.ico" alt="Eliminar" class="icon-delete-grande" />
+        <img src="/trash.ico" alt="Eliminar" class="icon-delete" />
       </button>
       @if (errorEliminar(); as error) {
         <p class="error" role="alert">{{ error }}</p>

@@ -1,14 +1,16 @@
 <div class="encabezado">
-  <h1>Catalogo de Direcciones</h1>
-  <p>Estos datos son del Archivo local</p>
-  <a routerLink="/direcciones/nuevo" class="boton">+ Nueva Dirección</a>
+  <h1>Gestionar Direcciones</h1>
+
+  <a routerLink="/direcciones/nuevo" class="boton--nuevo">+ Nueva Dirección</a>
 </div>
+<h4>Consulta, filtra y actualiza las direciones de los usuarios</h4>
 <section class="resumen">
   <div class="resumen__dato">
     <span class="resumen__numero">{{ catalogoDirec.visibles().length }}</span>
     <span class="resumen__texto">Direcciones en el Catalogo</span>
   </div>
 </section>
+<!--
 <div class="buscador">
   <input type="search" [formControl]="busqueda" placeholder="Buscar por Nombre" />
   <span class="buscador__estado">
@@ -17,6 +19,7 @@
     }
   </span>
 </div>
+-->
 @if (errorUsuarios(); as error) {
   <div class="aviso--error">{{ error }}</div>
 }

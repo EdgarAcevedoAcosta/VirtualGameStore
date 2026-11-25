@@ -11,16 +11,13 @@ import { DireccionesApi } from './direcciones-api';
 @Service()
 export class CatalogoDirecciones {
   private readonly recurso = httpResource<Sobre<Direccion[]>>(() => `${API_URL}/direcciones`);
-  private readonly direcciones = computed(() => this.recurso.value()?.data ?? []);
+  private readonly direcciones = computed(() => this.resultado().direcciones);
   private readonly apí = inject(DireccionesApi);
   private readonly _texto = signal('');
 
   readonly texto = this._texto.asReadonly();
-  readonly cargando = computed(() => this.recurso.isLoading());
-  readonly error = computed(() => {
-    const e = this.recurso.error();
-    return e ? mensajeDeApi(e) : null;
-  });
+  readonly cargando = computed(() => this.resultado().cargando);
+  readonly error = computed(() => this.resultado().error);
 
   readonly usuario = signal<Usuario | 'Todos'>('Todos');
   readonly seleccionada = signal<Direccion | null>(null);

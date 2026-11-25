@@ -1,4 +1,5 @@
 import { Component, input, output, inject, signal } from '@angular/core';
+import { DatePipe } from '@angular/common';
 import { Compra } from '../../modelos/compra';
 import { RouterLink } from '@angular/router';
 import { CatalogoCompras } from '../../servicios/catalogo-compras';
@@ -6,13 +7,15 @@ import { CatalogoCompras } from '../../servicios/catalogo-compras';
 import { ComprasApi } from '../../servicios/compras-api';
 import { mensajeDeApi } from '../../servicios/errores';
 @Component({
-  imports: [RouterLink],
+  imports: [DatePipe, RouterLink],
   selector: 'app-targeta-compra',
   styleUrl: './targeta-compra.css',
   templateUrl: './targeta-compra.html',
 })
 export class TargetaCompra {
   readonly compra = input.required<Compra>();
+  readonly nombreUsuario = input.required<string>();
+  readonly direccionCompleta = input.required<string>();
   readonly activa = input(false);
   readonly seleccionar = output<Compra>();
   protected readonly catalogoCompra = inject(CatalogoCompras);

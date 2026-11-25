@@ -1,8 +1,8 @@
 <div class="encabezado">
-  <h1>Catalogo de Compras</h1>
-  <p>Estos datos son del Archivo local</p>
-  <a routerLink="/compras/nuevo" class="boton">+ Nueva Compra</a>
+  <h1>Gestion de Compras</h1>
+  <a routerLink="/compras/nuevo" class="boton--nuevo">+ Nueva Compra</a>
 </div>
+<h4>Consulta, filtra y actualiza las compras de tus usuarios</h4>
 <section class="resumen">
   <div class="resumen__dato">
     <span class="resumen__numero">{{ catalogoCompra.visibles().length }}</span>
@@ -18,6 +18,12 @@
   </span>
 </div>
 <app-filtro-compras></app-filtro-compras>
+@if (errorUsuarios(); as error) {
+  <div class="aviso--error" role="alert">{{ error }}</div>
+}
+@if (errorDirecciones(); as error) {
+  <div class="aviso--error" role="alert">{{ error }}</div>
+}
 @if (catalogoCompra.error(); as error) {
   <div class="aviso--error">{{ error }}</div>
 } @else if (catalogoCompra.cargando()) {
@@ -32,6 +38,8 @@
       @for (compra of catalogoCompra.visibles(); track compra.idCompra) {
         <app-targeta-compra
           [compra]="compra"
+          [nombreUsuario]="nombreUsuario(compra.idUsuario)"
+          [direccionCompleta]="direccionCompleta(compra.idDireccion)"
           [activa]="compra.idCompra === catalogoCompra.seleccionada()?.idCompra"
           (seleccionar)="catalogoCompra.seleccionar($event)"
         ></app-targeta-compra>
