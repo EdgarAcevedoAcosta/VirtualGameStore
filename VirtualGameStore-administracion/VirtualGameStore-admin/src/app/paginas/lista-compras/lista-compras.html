@@ -9,14 +9,7 @@
     <span class="resumen__texto">Compras en el Catalogo</span>
   </div>
 </section>
-<div class="buscador">
-  <input type="search" [formControl]="busqueda" placeholder="Buscar por Nombre" />
-  <span class="buscador__estado">
-    @if (catalogoCompra.cargando()) {
-      Buscando...
-    }
-  </span>
-</div>
+
 <app-filtro-compras></app-filtro-compras>
 @if (errorUsuarios(); as error) {
   <div class="aviso--error" role="alert">{{ error }}</div>

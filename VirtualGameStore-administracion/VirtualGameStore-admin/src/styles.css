@@ -156,6 +156,7 @@ a {
   font-size: 0.86rem;
   color: rgba(255, 255, 255, 0.7);
   margin-left: 0.4rem;
+  margin-right: 0.6rem;
 }
 
 /* --- tarjetas ----------------------------------------------------------- */
@@ -320,7 +321,10 @@ a {
   flex-wrap: wrap;
   margin-top: 0.6rem;
 }
-
+.cerrar {
+  background-color: var(--seleccionar-catalogo);
+  color: var(--boton-agregar);
+}
 /* --- formulario --------------------------------------------------------- */
 .campo {
   display: grid;

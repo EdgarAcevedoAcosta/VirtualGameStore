@@ -1,7 +1,7 @@
 <header class="barra">
   <div class="barra__interior">
     <a class="barra__marca" routerLink="/productos">
-      <img src="/logo.svg" alt="" /> Virtual Game Store
+      <img src="/favicon.ico" alt="" /> Virtual Game Store
       <span class="barra__etiqueta">Admin</span>
     </a>
     <nav class="barra__enlaces">
@@ -22,7 +22,9 @@
       >
 
       <span class="barra__quien"> • {{ sesion.usuario()?.nombre }} </span>
-      <button class="boton boton--chico boton--secundario" (click)="salir()">Cerrar Sesión</button>
+      <button class="boton boton--chico boton--secundario cerrar" (click)="salir()">
+        Cerrar Sesión
+      </button>
     </nav>
   </div>
 </header>

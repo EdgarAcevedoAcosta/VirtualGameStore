@@ -96,9 +96,9 @@ export const routes: Routes = [
           import('./paginas/formulario-compra/formulario-compra').then((m) => m.FormularioCompra),
         title: 'Editar Compra - Admin',
       },
-      { path: '', redirectTo: 'productos', pathMatch: 'full' },
+      { path: '', redirectTo: 'login', pathMatch: 'full' },
     ],
   },
 
-  { path: '**', redirectTo: 'productos' },
+  { path: '**', redirectTo: 'login' },
 ];

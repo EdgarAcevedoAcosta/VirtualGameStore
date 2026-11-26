@@ -32,6 +32,6 @@ export const IMAGENES: string[] = [
   '/img/super-mario-odyssey.jpg',
   '/img/pokemon-legends-arceus.jpg',
   '/img/animal-crossing-new-horizons.jpg',
-  '/img/mario-kart-8-deluxe.jpg',
+  '/img/mario-kart-8-deluxe.png',
   '/img/kirbyEpicYarn.jpg',
 ];
