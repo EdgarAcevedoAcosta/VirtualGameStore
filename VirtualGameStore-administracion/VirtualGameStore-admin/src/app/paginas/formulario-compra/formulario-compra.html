@@ -9,9 +9,22 @@
 <form class="tarjeta formulario" [formGroup]="form" (ngSubmit)="guardar()" novalidate>
   <div class="campo">
     <label for="idUsuario">Usuario</label>
-    <input id="idUsuario" formControlName="idUsuario" type="number" />
-    @if (f.idUsuario.touched && f.idUsuario.hasError('required')) {
-      <span class="error">El Usuario es Obligatorio</span>
+    @if (idCompra()) {
+      <input
+        id="idUsuario"
+        type="text"
+        [value]="nombreUsuario()"
+        placeholder="Cargando usuario..."
+        readonly
+      />
+    } @else {
+      <input id="idUsuario" formControlName="idUsuario" type="number" />
+      @if (f.idUsuario.touched && f.idUsuario.hasError('required')) {
+        <span class="error">El Usuario es Obligatorio</span>
+      }
+      @if (f.idUsuario.touched && f.idUsuario.hasError('min')) {
+        <span class="error">El ID del usuario debe ser mayor que 0</span>
+      }
     }
   </div>
   <div class="campo">
@@ -20,12 +33,18 @@
     @if (f.idDireccion.touched && f.idDireccion.hasError('required')) {
       <span class="error">La Dirección es Obligatoria</span>
     }
+    @if (f.idDireccion.touched && f.idDireccion.hasError('min')) {
+      <span class="error">El ID de la dirección debe ser mayor que 0</span>
+    }
   </div>
   <div class="campo">
     <label for="idCarrito">Carrito</label>
     <input id="idCarrito" formControlName="idCarrito" type="number" />
     @if (f.idCarrito.touched && f.idCarrito.hasError('required')) {
       <span class="error">El Carrito es Obligatorio</span>
+    }
+    @if (f.idCarrito.touched && f.idCarrito.hasError('min')) {
+      <span class="error">El ID del carrito debe ser mayor que 0</span>
     }
   </div>
   <div class="campo">
@@ -35,17 +54,7 @@
       <span class="error">Introduce la Fecha en que se dio la Compra</span>
     }
   </div>
-  <!--
-  <div class="fila">
-    <div class="campo">
-      <label for="categoria">Categoria</label>
-      <select formGroupName="categoria" id="categoria">
-        @for (c of categorias; track c) {
-          <option [value]="c">{{ c }}</option>
-        }
-      </select>
-    </div>
-  </div>-->
+
   <div class="campo">
     <label for="total">Total de la Compra</label>
     <input id="total" type="number" formControlName="total" />
@@ -61,6 +70,9 @@
         <option [value]="es">{{ es }}</option>
       }
     </select>
+    @if (f.estado.touched && f.estado.hasError('required')) {
+      <span class="error">El Estado de la Compra es Obligatorio</span>
+    }
   </div>
 
   <div class="acciones">

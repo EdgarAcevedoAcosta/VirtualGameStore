@@ -17,7 +17,7 @@ export class ComprasApi {
   obtener(idCompra: number) {
     return this.http.get<Sobre<Compra>>(`${API_URL}/compras/${idCompra}`).pipe(map((r) => r.data));
   }
-  actualizar(idCompra: number, datos: CompraNueva) {
+  actualizar(idCompra: number, datos: Pick<Compra, 'estado'>) {
     return this.http
       .patch<Sobre<Compra>>(`${API_URL}/compras/${idCompra}`, datos)
       .pipe(map((r) => r.data));

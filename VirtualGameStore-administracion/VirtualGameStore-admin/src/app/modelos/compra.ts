@@ -2,7 +2,7 @@ export interface Compra {
   idCompra: number;
   idUsuario: number;
   idDireccion: number;
-  fecha: Date;
+  fecha: string;
   total: number;
   estado: string;
   idCarrito: number;
