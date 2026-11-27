@@ -11,8 +11,8 @@ import {
 } from '@nestjs/common';
 import { CarritoComprasService } from './carrito-compras.service';
 import { Publico } from '../auth/decoradores/publico-decorador';
-import type { ActualizarCarritoDto } from './dto/actualizar-carrito';
-import type { AnadirCarritoDto } from './dto/añadir-carrito';
+import { ActualizarCarritoDto } from './dto/actualizar-carrito';
+import { AnadirCarritoDto } from './dto/añadir-carrito';
 
 @Controller('carritoCompras')
 export class CarritoComprasController {
