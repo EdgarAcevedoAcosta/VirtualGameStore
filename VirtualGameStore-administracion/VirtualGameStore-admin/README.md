@@ -38,7 +38,7 @@ El admin usa la contraseña **`admin123`**.
 # Productos
 
 | Caso de Uso | Pantalla que lo Resuelve |
-| ----------------------------- | ----- | ------------------------------------------------------------- |
+| ----------------------------- | ------------------------------------------------------------- |
 | Ver el Listado de Productos | `/productos` Aqui esta la Lista de Productos hecha con Targetas de Producto |
 | Crear Producto | Formulario de Producto |
 | Editar Producto | Formulario de Producto |
@@ -49,7 +49,7 @@ El admin usa la contraseña **`admin123`**.
 # Categorias
 
 | Caso de Uso | Pantalla que lo Resuelve |
-| ----------------------------- | ----- | ------------------------------------------------------------- |
+| ----------------------------- | ------------------------------------------------------------- |
 | Ver el Listado de Categorias | `/categorias` Aqui esta la Lista de Categorías hecha con Targetas de Categoria |
 | Crear Categoría | Formulario de Categoría |
 | Editar Categoría | Formulario de Categoría |
@@ -59,7 +59,7 @@ El admin usa la contraseña **`admin123`**.
 # Usuarios
 
 | Caso de Uso | Pantalla que lo Resuelve |
-| ----------------------------- | ----- | ------------------------------------------------------------- |
+| ----------------------------- | ------------------------------------------------------------- |
 | Ver el Listado de Usuarios | `/usuarios` Aqui esta la Lista de Usuarios hecha con Targetas de Usuario |
 | Crear Usuarios | Formulario de Usuario |
 | Editar Usuarios | Formulario de Usuario |
@@ -69,7 +69,7 @@ El admin usa la contraseña **`admin123`**.
 # Direcciones
 
 | Caso de Uso | Pantalla que lo Resuelve |
-| ----------------------------- | ----- | ------------------------------------------------------------- |
+| ----------------------------- | ------------------------------------------------------------- |
 | Ver el Listado de Direcciones | `/direcciones` Aqui esta la Lista de Direcciones hecha con Targetas de Dirección |
 | Crear Dirección | Formulario de Dirección |
 | Editar Dirección | Formulario de Dirección |
@@ -78,7 +78,7 @@ El admin usa la contraseña **`admin123`**.
 # Compras
 
 | Caso de Uso | Pantalla que lo Resuelve |
-| ----------------------------- | ----- | ------------------------------------------------------------- |
+| ----------------------------- | ------------------------------------------------------------- |
 | Ver el Listado de Compras | `/compras` Aqui esta la Lista de Compras hecha con Targetas de Compra |
 | Crear Compra | Formulario de Compra |
 | Editar Compra | Formulario de Compra |
