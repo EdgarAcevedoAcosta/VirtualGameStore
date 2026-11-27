@@ -1,10 +1,11 @@
 import {
-  IsEmail,
+  ArrayUnique,
+  IsArray,
   IsOptional,
   IsNotEmpty,
   IsString,
   MaxLength,
-  IsDecimal,
+  IsNumber,
   IsInt,
 } from 'class-validator';
 //import { Categoria } from "../dominio/entidades";
@@ -19,7 +20,7 @@ export class CrearProductoDto {
   @MaxLength(200)
   descripcion: string;
 
-  @IsDecimal()
+  @IsNumber()
   @IsNotEmpty()
   precio: number;
 
@@ -31,4 +32,14 @@ export class CrearProductoDto {
   @IsNotEmpty()
   @MaxLength(200)
   imagenUrl: string;
+
+  @IsOptional()
+  @IsArray()
+  @ArrayUnique()
+  @IsInt({ each: true })
+  categorias?: number[];
+
+  @IsOptional()
+  @IsString()
+  estado?: string;
 }

@@ -6,13 +6,14 @@ import {
   HttpCode,
   NotFoundException,
   Param,
+  ParseIntPipe,
   Patch,
   Post,
 } from '@nestjs/common';
 import { Publico } from '../auth/decoradores/publico-decorador';
 import { ProductoService } from './producto.service';
-import type { CrearProductoDto } from './dto/crear-producto';
-import type { ActualizarProductoDto } from './dto/actualizar-produto';
+import { CrearProductoDto } from './dto/crear-producto';
+import { ActualizarProductoDto } from './dto/actualizar-produto';
 
 @Controller('productos')
 export class ProductoController {
@@ -46,7 +47,7 @@ export class ProductoController {
   /** PATCH /producto/2 */
   @Patch(':id')
   async actualizarProducto(
-    @Param('id') id: string,
+    @Param('id', ParseIntPipe) id: number,
     @Body() dto: ActualizarProductoDto,
   ) {
     const producto = await this.servicio.actualizarProducto(Number(id), dto);
@@ -58,7 +59,7 @@ export class ProductoController {
 
   /** DELETE /producto/2 */
   @Delete(':id')
-  async eliminarProducto(@Param('id') id: string) {
+  async eliminarProducto(@Param('id', ParseIntPipe) id: string) {
     const producto = await this.servicio.eliminarProducto(Number(id));
     if (!producto) {
       throw new NotFoundException(`No existe el producto ${id}`);

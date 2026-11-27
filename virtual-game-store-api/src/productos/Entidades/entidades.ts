@@ -1,3 +1,5 @@
+import type { Categoria } from '../../categorias/Entidades/entidades';
+
 export interface Producto {
   idProducto?: number;
   nombre: string;
@@ -6,5 +8,6 @@ export interface Producto {
   stock?: number;
   imagenUrl?: string;
   estado: string;
+  categorias: Categoria[];
 }
 export type EstadoProcucto = 'activo' | 'inactivo';

@@ -6,13 +6,14 @@ import {
   HttpCode,
   NotFoundException,
   Param,
+  ParseIntPipe,
   Patch,
   Post,
 } from '@nestjs/common';
 import { UsuarioService } from './usuario.service';
 import { Publico } from '../auth/decoradores/publico-decorador';
-import type { CrearUsuarioDto } from './dto/crear-usuario';
-import type { ActualizarUsuarioDto } from './dto/actualizar-usuario';
+import { CrearUsuarioDto } from './dto/crear-usuario';
+import { ActualizarUsuarioDto } from './dto/actualizar-usuario';
 
 @Controller('usuarios')
 export class UsuariosController {
@@ -39,14 +40,14 @@ export class UsuariosController {
   /** POST /usuario */
   @Post()
   @HttpCode(201)
-  crearUsuario(@Body() dto: CrearUsuarioDto) {
+  crear(@Body() dto: CrearUsuarioDto) {
     return this.servicio.crearUsuario(dto);
   }
 
   /** PATCH /usuario/2 */
   @Patch(':id')
   async actualizarUsuario(
-    @Param('id') id: string,
+    @Param('id', ParseIntPipe) id: number,
     @Body() dto: ActualizarUsuarioDto,
   ) {
     const usuario = await this.servicio.actualizarUsuario(Number(id), dto);
@@ -58,7 +59,7 @@ export class UsuariosController {
 
   /** DELETE /usuario/2 */
   @Delete(':id')
-  async eliminarUsuario(@Param('id') id: string) {
+  async eliminarUsuario(@Param('id', ParseIntPipe) id: string) {
     const usuario = await this.servicio.eliminarUsuario(Number(id));
     if (!usuario) {
       throw new NotFoundException(`No existe el usuario ${id}`);

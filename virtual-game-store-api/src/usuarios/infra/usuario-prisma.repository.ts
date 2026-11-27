@@ -43,14 +43,14 @@ export class UsuarioPrismaRepository implements UsuarioRepository {
     });
   }
   async eliminarUsuario(idUsuario: number): Promise<boolean> {
-    const i = this.prisma.usuario.findUnique({
+    const usuario = await this.prisma.usuario.findUnique({
       where: { idUsuario },
     });
-    if (!i) {
+    if (!usuario) {
       return false;
-    } else {
-      this.prisma.usuario.delete({ where: { idUsuario } });
-      return true;
     }
+
+    await this.prisma.usuario.delete({ where: { idUsuario } });
+    return true;
   }
 }

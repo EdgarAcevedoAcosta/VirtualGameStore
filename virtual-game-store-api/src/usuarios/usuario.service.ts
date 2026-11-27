@@ -4,6 +4,9 @@ import type { UsuarioRepository } from './Entidades/usuario.repository';
 import { Usuario } from './Entidades/entidades';
 import { CrearUsuarioDto } from './dto/crear-usuario';
 import { ActualizarUsuarioDto } from './dto/actualizar-usuario';
+import * as bcrypt from 'bcryptjs';
+
+const VUELTAS = 10;
 
 @Injectable()
 export class UsuarioService {
@@ -20,8 +23,12 @@ export class UsuarioService {
     return this.repo.buscarPorId(idusuario);
   }
 
-  crearUsuario(dto: CrearUsuarioDto): Promise<Usuario> {
-    return this.repo.crearUsuario(dto);
+  async crearUsuario(dto: CrearUsuarioDto): Promise<Usuario> {
+    const passwordHash = await bcrypt.hash(dto.passwordHash, VUELTAS);
+    return this.repo.crearUsuario({
+      ...dto,
+      passwordHash,
+    });
   }
 
   actualizarUsuario(
