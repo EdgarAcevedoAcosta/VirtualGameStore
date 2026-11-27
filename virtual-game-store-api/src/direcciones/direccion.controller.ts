@@ -6,13 +6,14 @@ import {
   HttpCode,
   NotFoundException,
   Param,
+  ParseIntPipe,
   Patch,
   Post,
 } from '@nestjs/common';
 import { Publico } from '../auth/decoradores/publico-decorador';
 import { DireccionService } from './direccion.service';
-import type { CrearDireccionDto } from './dto/crear-direccion';
-import type { ActualizarDireccionDto } from './dto/actualizar-direccion';
+import { CrearDireccionDto } from './dto/crear-direccion';
+import { ActualizarDireccionDto } from './dto/actualizar-direccion';
 
 @Controller('direcciones')
 export class DireccionController {
@@ -46,7 +47,7 @@ export class DireccionController {
   /** PATCH /direccion/2 */
   @Patch(':id')
   async actualizarDireccion(
-    @Param('id') id: string,
+    @Param('id', ParseIntPipe) id: number,
     @Body() dto: ActualizarDireccionDto,
   ) {
     const direccion = await this.servicio.actualizarDireccion(Number(id), dto);
@@ -58,7 +59,7 @@ export class DireccionController {
 
   /** DELETE /direccion/2 */
   @Delete(':id')
-  async eliminarDireccion(@Param('id') id: string) {
+  async eliminarDireccion(@Param('id', ParseIntPipe) id: string) {
     const direccion = await this.servicio.eliminarDireccion(Number(id));
     if (!direccion) {
       throw new NotFoundException(`No existe el direccion ${id}`);

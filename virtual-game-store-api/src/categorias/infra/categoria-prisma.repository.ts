@@ -15,12 +15,12 @@ export class CategoriaPrismaRepository implements CategoriaRepository {
   buscarPorId(idCategoria: number): Promise<Categoria | null> {
     return this.prisma.categoria.findUnique({ where: { idCategoria } });
   }
-  crearCategoria(datos: CrearCategoriaDto): Promise<Categoria> {
+  crear(datos: CrearCategoriaDto): Promise<Categoria> {
     return this.prisma.categoria.create({
       data: datos,
     });
   }
-  async editarCategoria(
+  async editar(
     idCategoria: number,
     datos: editarCategoriaDto,
   ): Promise<Categoria | null> {
@@ -36,15 +36,15 @@ export class CategoriaPrismaRepository implements CategoriaRepository {
       data: datos,
     });
   }
-  async eliminarCategoria(idCategoria: number): Promise<boolean> {
-    const i = this.prisma.categoria.findUnique({
+  async eliminar(idCategoria: number): Promise<boolean> {
+    const categoria = await this.prisma.categoria.findUnique({
       where: { idCategoria },
     });
-    if (!i) {
+    if (!categoria) {
       return false;
-    } else {
-      this.prisma.categoria.delete({ where: { idCategoria } });
-      return true;
     }
+
+    await this.prisma.categoria.delete({ where: { idCategoria } });
+    return true;
   }
 }

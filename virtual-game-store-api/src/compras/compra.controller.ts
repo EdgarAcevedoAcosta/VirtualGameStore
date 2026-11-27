@@ -6,12 +6,14 @@ import {
   HttpCode,
   NotFoundException,
   Param,
+  ParseIntPipe,
   Patch,
   Post,
 } from '@nestjs/common';
 import { Publico } from '../auth/decoradores/publico-decorador';
 import { CompraService } from './compra.service';
-import type { CrearCompraDto } from './dto/crear-compra';
+import { CrearCompraDto } from './dto/crear-compra';
+import { ActualizarCompraDto } from './dto/editar-compra';
 
 @Controller('compras')
 export class CompraController {
@@ -43,22 +45,22 @@ export class CompraController {
   }
 
   /** PATCH /compra/2 */
-  /*
+  /**/
   @Patch(':id')
   async actualizarCompra(
-    @Param('id') id: string,
+    @Param('id', ParseIntPipe) id: number,
     @Body() dto: ActualizarCompraDto,
   ) {
-    const compra = await this.servicio.actualizarCompra(Number(id), dto);
+    const compra = await this.servicio.actualizar(Number(id), dto);
     if (!compra) {
       throw new NotFoundException(`No existe el compra ${id}`);
     }
     return compra;
-  }*/
+  }
 
   /** DELETE /compra/2 */
   @Delete(':id')
-  async eliminarCompra(@Param('id') id: string) {
+  async eliminarCompra(@Param('id', ParseIntPipe) id: string) {
     const compra = await this.servicio.eliminarCompra(Number(id));
     if (!compra) {
       throw new NotFoundException(`No existe el compra ${id}`);

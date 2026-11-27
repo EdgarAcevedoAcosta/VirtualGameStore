@@ -38,14 +38,14 @@ export class DireccionPrismaRepository implements DireccionRepository {
     });
   }
   async eliminarDireccion(idDireccion: number): Promise<boolean> {
-    const i = this.prisma.direccion.findUnique({
+    const direccion = await this.prisma.direccion.findUnique({
       where: { idDireccion },
     });
-    if (!i) {
+    if (!direccion) {
       return false;
-    } else {
-      this.prisma.direccion.delete({ where: { idDireccion } });
-      return true;
     }
+
+    await this.prisma.direccion.delete({ where: { idDireccion } });
+    return true;
   }
 }

@@ -16,23 +16,20 @@ export class CategoriaService {
     return this.repo.listar();
   }
 
-  buscarPorId(idDireccion: number): Promise<Categoria | null> {
+  buscar(idDireccion: number): Promise<Categoria | null> {
     return this.repo.buscarPorId(idDireccion);
   }
 
-  crearCategoria(dto: CrearCategoriaDto): Promise<Categoria> {
-    return this.repo.crearCategoria(dto);
+  crear(dto: CrearCategoriaDto): Promise<Categoria> {
+    return this.repo.crear(dto);
   }
 
-  editarCategoria(
-    id: number,
-    dto: editarCategoriaDto,
-  ): Promise<Categoria | null> {
-    return this.repo.editarCategoria(id, dto);
+  editar(id: number, dto: editarCategoriaDto): Promise<Categoria | null> {
+    return this.repo.editar(id, dto);
   }
 
-  async eliminarCategoria(id: number): Promise<boolean> {
-    await this.repo.eliminarCategoria(id);
+  async eliminar(id: number): Promise<boolean> {
+    await this.repo.eliminar(id);
     const categoria = await this.repo.buscarPorId(id);
     return categoria == null;
   }

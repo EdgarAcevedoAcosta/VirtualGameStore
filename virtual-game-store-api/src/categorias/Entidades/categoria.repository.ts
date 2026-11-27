@@ -5,10 +5,7 @@ import { Categoria } from './entidades';
 export interface CategoriaRepository {
   listar(): Promise<Categoria[]>;
   buscarPorId(id: number): Promise<Categoria | null>;
-  crearCategoria(datos: CrearCategoriaDto): Promise<Categoria>;
-  editarCategoria(
-    id: number,
-    datos: editarCategoriaDto,
-  ): Promise<Categoria | null>;
-  eliminarCategoria(id: number): Promise<boolean>;
+  crear(datos: CrearCategoriaDto): Promise<Categoria>;
+  editar(id: number, datos: editarCategoriaDto): Promise<Categoria | null>;
+  eliminar(id: number): Promise<boolean>;
 }

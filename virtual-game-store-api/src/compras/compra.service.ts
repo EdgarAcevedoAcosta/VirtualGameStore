@@ -3,6 +3,7 @@ import { COMPRA_REPOSITORY } from './compra.tokens';
 import type { CompraRepository } from './Entidades/compra.repository';
 import { Compra } from './Entidades/entidades';
 import { CrearCompraDto } from './dto/crear-compra';
+import { ActualizarCompraDto } from './dto/editar-compra';
 
 @Injectable()
 export class CompraService {
@@ -20,15 +21,15 @@ export class CompraService {
   }
 
   crearCompra(dto: CrearCompraDto): Promise<Compra> {
-    return this.repo.crearCompra(dto);
+    return this.repo.crearCompra({
+      ...dto,
+      fecha: new Date(dto.fecha),
+    });
   }
-  /*
-  actualizarCompra(
-    id: number,
-    dto: ActualizarCompraDto,
-  ): Promise<Compra | null> {
+  /**/
+  actualizar(id: number, dto: ActualizarCompraDto): Promise<Compra | null> {
     return this.repo.actualizarCompra(id, dto);
-  }*/
+  }
 
   async eliminarCompra(id: number): Promise<boolean> {
     await this.repo.eliminarCompra(id);
